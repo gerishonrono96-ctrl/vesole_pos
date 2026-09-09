@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>POS System - Kenya</title>
+    <title>Complete POS System - All Features</title>
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBPUyBTeXN0ZW0gLSBLZW55YSIsCiAgInNob3J0X25hbWUiOiAiUE9TIiwKICAiZGVzY3JpcHRpb24iOiAiQ29tcGxldGUgUG9pbnQgb2YgU2FsZSBTZXN0ZW0gZm9yIEtlbnlhbiBCdXNpbmVzc2VzIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiM2NjdlZWEiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIHJ4PScyMCcgZmlsbD0nJTIzNjY3ZWVhJy8+PHRleHQgeD0nNTAnIHk9JzU4JyBmb250LXNpemU9JzQwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmaWxsPSd3aGl0ZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnPkVTPC90ZXh0Pjwvc3ZnPg==",
-      "sizes": "192x192",
-      "type": "image/svg+xml"
-    }
-  ]
-fQ==" />
+    <!-- PWA Manifest (embedded) -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNvbXBsZXRlIFBPUyBTeXN0ZW0iLAogICJzaG9ydF9uYW1lIjogIlBPUyIsCiAgImRlc2NyaXB0aW9uIjogIkNvbXBsZXRlIFBvaW50IG9mIFNhbGUgU3lzdGVtIHdpdGggQWxsIEZlYXR1cmVzIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiM2NjdlZWEiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIHJ4PScyMCcgZmlsbD0nJTIzNjY3ZWVhJy8+PHRleHQgeD0nNTAnIHk9JzU4JyBmb250LXNpemU9JzQwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmaWxsPSd3aGl0ZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnPlBPUzwvdGV4dD48L3N2Zz4iLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9" />
 
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ================================================================
+           COMPLETE STYLES
+           ================================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -49,7 +46,7 @@ fQ==" />
             padding: 40px 35px;
             border-radius: 20px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            width: 400px;
+            width: 420px;
             max-width: 95%;
             animation: slideUp 0.5s ease;
         }
@@ -356,6 +353,11 @@ fQ==" />
 
         .product-card .p-stock.low {
             color: #e53e3e;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
         }
 
         .product-card .p-edit {
@@ -908,7 +910,7 @@ fQ==" />
             background: white;
             border-radius: 20px;
             padding: 28px 30px;
-            max-width: 500px;
+            max-width: 520px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -1014,6 +1016,84 @@ fQ==" />
 
         .modal-box .btn-print:hover {
             background: #2f855a;
+        }
+
+        /* ===== PAYMENT DETAILS CARD ===== */
+        .payment-details-card {
+            background: white;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
+        }
+
+        .payment-details-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        .payment-details-card .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f2f5;
+            font-size: 13px;
+        }
+
+        .payment-details-card .detail-row .label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .payment-details-card .detail-row .value {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .payment-details-card .payment-instruction {
+            background: #f8f9fc;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .payment-details-card .payment-instruction strong {
+            color: #1a1a2e;
+        }
+
+        /* ===== LOW STOCK ALERT ===== */
+        .low-stock-banner {
+            background: #e53e3e;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            display: none;
+            font-weight: 600;
+            font-size: 14px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .low-stock-banner.show {
+            display: flex;
+        }
+
+        .low-stock-banner button {
+            background: white;
+            color: #e53e3e;
+            border: none;
+            padding: 4px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
         }
 
         /* ===== UTILITY ===== */
@@ -1160,7 +1240,7 @@ fQ==" />
     <div id="loginScreen">
         <div class="login-box">
             <h2>🇰🇪 POS System</h2>
-            <p class="subtitle">Sign in to manage your store</p>
+            <p class="subtitle">Complete Point of Sale - All Features</p>
 
             <label>Select User Role</label>
             <select id="loginRole">
@@ -1202,12 +1282,19 @@ fQ==" />
             </div>
         </div>
 
+        <!-- LOW STOCK BANNER -->
+        <div class="low-stock-banner" id="lowStockBanner">
+            <span>⚠️ <span id="lowStockCount">0</span> products are running low on stock!</span>
+            <button onclick="document.querySelector('[data-tab=\'products\']').click();">📦 View Products</button>
+        </div>
+
         <!-- TABS -->
         <div class="tabs">
             <button class="active" data-tab="pos">🛒 POS</button>
             <button data-tab="products">📦 Products</button>
             <button data-tab="orders">📋 Orders</button>
             <button data-tab="reports">📊 Reports</button>
+            <button data-tab="customers">👥 Customers</button>
             <button data-tab="settings">⚙️ Settings</button>
         </div>
 
@@ -1365,7 +1452,17 @@ fQ==" />
                 <div class="stat-card">
                     <div class="stat-icon">👤</div>
                     <div class="stat-value" id="statCustomers">0</div>
-                    <div class="stat-label">Customers</div>
+                    <div class="stat-label">Total Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" id="statLowStock">0</div>
+                    <div class="stat-label">Low Stock Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="statProfit">KES 0.00</div>
+                    <div class="stat-label">Estimated Profit</div>
                 </div>
             </div>
 
@@ -1397,11 +1494,98 @@ fQ==" />
         </div>
 
         <!-- ================================================================
+        TAB: CUSTOMERS
+        ================================================================ -->
+        <div class="tab-content" id="tab-customers">
+            <div class="mgmt-controls">
+                <input type="text" id="customerSearch" placeholder="🔍 Search customers..." />
+                <button id="addCustomerBtn">➕ Add Customer</button>
+                <button id="exportCustomersBtn" class="btn-danger">📥 Export CSV</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Orders</th>
+                            <th>Total Spent</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody"></tbody>
+                </table>
+            </div>
+            <div style="margin-top:10px;text-align:right;color:#999;font-size:11px;" id="customerCount"></div>
+        </div>
+
+        <!-- ================================================================
         TAB: SETTINGS
         ================================================================ -->
         <div class="tab-content" id="tab-settings">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
-                <!-- Users Management -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+
+                <!-- Payment Details -->
+                <div class="payment-details-card">
+                    <h3>💳 Payment Details</h3>
+                    <div class="detail-row">
+                        <span class="label">M-Pesa Paybill</span>
+                        <span class="value" id="displayMpesaPaybill">247247</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">M-Pesa Till</span>
+                        <span class="value" id="displayMpesaTill">123456</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Bank Name</span>
+                        <span class="value" id="displayBankName">Equity Bank</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Bank Account</span>
+                        <span class="value" id="displayBankAccount">0123456789</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Bank Branch</span>
+                        <span class="value" id="displayBankBranch">Nairobi CBD</span>
+                    </div>
+                    <div class="payment-instruction">
+                        <strong>📱 M-Pesa:</strong> Customer pays to Paybill <strong id="displayMpesaPaybill2">247247</strong>
+                        Account: <strong id="displayMpesaTill2">123456</strong><br />
+                        <strong>🏦 Bank:</strong> Customer transfers to <strong id="displayBankName2">Equity Bank</strong><br />
+                        Account: <strong id="displayBankAccount2">0123456789</strong>, Branch: <strong id="displayBankBranch2">Nairobi CBD</strong>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <label style="font-weight:600;font-size:12px;">M-Pesa Paybill</label>
+                        <input type="text" id="mpesaPaybill" value="247247" style="width:100%;padding:6px 10px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                        <label style="font-weight:600;font-size:12px;margin-top:8px;">M-Pesa Till Number</label>
+                        <input type="text" id="mpesaTill" value="123456" style="width:100%;padding:6px 10px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                        <label style="font-weight:600;font-size:12px;margin-top:8px;">Bank Name</label>
+                        <input type="text" id="bankName" value="Equity Bank" style="width:100%;padding:6px 10px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                        <label style="font-weight:600;font-size:12px;margin-top:8px;">Bank Account Number</label>
+                        <input type="text" id="bankAccount" value="0123456789" style="width:100%;padding:6px 10px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                        <label style="font-weight:600;font-size:12px;margin-top:8px;">Bank Branch</label>
+                        <input type="text" id="bankBranch" value="Nairobi CBD" style="width:100%;padding:6px 10px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                        <button id="savePaymentDetailsBtn" style="margin-top:10px;padding:8px 16px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">💾 Save Payment Details</button>
+                    </div>
+                </div>
+
+                <!-- Store Settings -->
+                <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom:12px;font-size:16px;">⚙️ Store Settings</h3>
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Store Name</label>
+                    <input type="text" id="storeName" value="My Kenyan Store" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Tax Rate (%)</label>
+                    <input type="number" id="taxRate" value="16" step="0.1" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Currency</label>
+                    <input type="text" id="currencySymbol" value="KES" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Low Stock Alert Level</label>
+                    <input type="number" id="lowStockLevel" value="10" min="1" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <button id="saveSettingsBtn" style="margin-top:12px;padding:8px 16px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">💾 Save Settings</button>
+                </div>
+
+                <!-- User Management -->
                 <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
                     <h3 style="margin-bottom:12px;font-size:16px;">👥 User Management</h3>
                     <p style="font-size:12px;color:#666;margin-bottom:10px;">Set or change your password below</p>
@@ -1419,18 +1603,6 @@ fQ==" />
                         <button id="setPasswordBtn" style="margin-top:8px;padding:8px 16px;background:#38a169;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">🔑 Set Password</button>
                     </div>
                     <div id="usersList" style="margin-top:12px;border-top:1px solid #e8ecf1;padding-top:10px;"></div>
-                </div>
-
-                <!-- Store Settings -->
-                <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom:12px;font-size:16px;">⚙️ Store Settings</h3>
-                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Store Name</label>
-                    <input type="text" id="storeName" value="My Store" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
-                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Tax Rate (%)</label>
-                    <input type="number" id="taxRate" value="16" step="0.1" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
-                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Currency</label>
-                    <input type="text" id="currencySymbol" value="KES" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
-                    <button id="saveSettingsBtn" style="margin-top:12px;padding:8px 16px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">💾 Save Settings</button>
                 </div>
 
                 <!-- Data Management -->
@@ -1464,6 +1636,8 @@ fQ==" />
             <input type="number" id="prodPrice" placeholder="0.00" step="0.01" min="0" />
             <label>Stock Quantity *</label>
             <input type="number" id="prodStock" placeholder="0" min="0" />
+            <label>Cost Price (for profit calculation)</label>
+            <input type="number" id="prodCost" placeholder="0.00" step="0.01" min="0" />
             <label>Category</label>
             <select id="prodCategory">
                 <option value="food">🍽️ Food</option>
@@ -1474,6 +1648,24 @@ fQ==" />
             <div class="modal-actions">
                 <button class="btn-cancel" id="closeProductModal">Cancel</button>
                 <button class="btn-save" id="saveProductBtn">💾 Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Modal -->
+    <div class="modal-overlay" id="customerModal">
+        <div class="modal-box">
+            <h2 id="customerModalTitle">Add Customer</h2>
+            <input type="hidden" id="editCustomerId" />
+            <label>Customer Name *</label>
+            <input type="text" id="custName" placeholder="Full name" />
+            <label>Phone Number</label>
+            <input type="text" id="custPhone" placeholder="0712345678" />
+            <label>Email</label>
+            <input type="email" id="custEmail" placeholder="customer@email.com" />
+            <div class="modal-actions">
+                <button class="btn-cancel" id="closeCustomerModal">Cancel</button>
+                <button class="btn-save" id="saveCustomerBtn">💾 Save</button>
             </div>
         </div>
     </div>
@@ -1519,11 +1711,11 @@ fQ==" />
     </div>
 
     <!-- ================================================================
-    JAVASCRIPT - COMPLETE BACKEND
+    JAVASCRIPT - COMPLETE
     ================================================================ -->
     <script>
         // ================================================================
-        // DATABASE LAYER (localStorage)
+        // DATABASE LAYER
         // ================================================================
 
         const DB = {
@@ -1531,9 +1723,7 @@ fQ==" />
                 try {
                     const data = localStorage.getItem('pos_' + key);
                     return data ? JSON.parse(data) : defaultVal;
-                } catch {
-                    return defaultVal;
-                }
+                } catch { return defaultVal; }
             },
             set(key, val) {
                 localStorage.setItem('pos_' + key, JSON.stringify(val));
@@ -1553,18 +1743,18 @@ fQ==" />
 
         function getProducts() {
             return DB.get('products', [
-                { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
-                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
-                { id: 3, name: 'Samosas', code: 'SAM', price: 80, price: 150, stock: 60, category: 'food' },
-                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
-                { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
-                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
-                { id: 7, name: 'Pilau', code: 'PIL', price: 250, stock: 15, category: 'food' },
-                { id: 8, name: 'Soda', code: 'SOD', price: 70, stock: 45, category: 'drink' },
-                { id: 9, name: 'Juice', code: 'JUI', price: 100, stock: 18, category: 'drink' },
-                { id: 10, name: 'Water', code: 'WAT', price: 50, stock: 100, category: 'drink' },
-                { id: 11, name: 'Chips', code: 'CHI', price: 150, stock: 35, category: 'snack' },
-                { id: 12, name: 'Bread', code: 'BRE', price: 80, stock: 22, category: 'food' },
+                { id: 1, name: 'Chapati', code: 'CHP', price: 50, cost: 25, stock: 50, category: 'food' },
+                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, cost: 15, stock: 40, category: 'food' },
+                { id: 3, name: 'Samosas', code: 'SAM', price: 80, cost: 40, stock: 60, category: 'food' },
+                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, cost: 200, stock: 30, category: 'food' },
+                { id: 5, name: 'Ugali', code: 'UGA', price: 120, cost: 60, stock: 25, category: 'food' },
+                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, cost: 35, stock: 20, category: 'food' },
+                { id: 7, name: 'Pilau', code: 'PIL', price: 250, cost: 130, stock: 15, category: 'food' },
+                { id: 8, name: 'Soda', code: 'SOD', price: 70, cost: 35, stock: 45, category: 'drink' },
+                { id: 9, name: 'Juice', code: 'JUI', price: 100, cost: 50, stock: 18, category: 'drink' },
+                { id: 10, name: 'Water', code: 'WAT', price: 50, cost: 20, stock: 100, category: 'drink' },
+                { id: 11, name: 'Chips', code: 'CHI', price: 150, cost: 75, stock: 35, category: 'snack' },
+                { id: 12, name: 'Bread', code: 'BRE', price: 80, cost: 40, stock: 22, category: 'food' },
             ]);
         }
 
@@ -1580,11 +1770,21 @@ fQ==" />
             ]);
         }
 
+        function getCustomers() {
+            return DB.get('customers', []);
+        }
+
         function getSettings() {
             return DB.get('settings', {
                 storeName: 'My Kenyan Store',
                 taxRate: 16,
-                currencySymbol: 'KES'
+                currencySymbol: 'KES',
+                lowStockLevel: 10,
+                mpesaPaybill: '247247',
+                mpesaTill: '123456',
+                bankName: 'Equity Bank',
+                bankAccount: '0123456789',
+                bankBranch: 'Nairobi CBD'
             });
         }
 
@@ -1597,6 +1797,8 @@ fQ==" />
         function saveOrders(orders) { DB.set('orders', orders); }
 
         function saveUsers(users) { DB.set('users', users); }
+
+        function saveCustomers(customers) { DB.set('customers', customers); }
 
         function saveSettings(settings) { DB.set('settings', settings); }
 
@@ -1615,9 +1817,7 @@ fQ==" />
                 return false;
             }
 
-            // If password is not set, allow setting it
             if (!user.password || user.password === '') {
-                // Set the password
                 user.password = password;
                 saveUsers(users);
                 currentUser = user;
@@ -1627,23 +1827,11 @@ fQ==" />
                     .slice(1);
                 document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
                 document.getElementById('loginError').style.display = 'none';
-                cart = [];
-                discount = 0;
-                discountType = 'percentage';
-                selectedPayment = 'cash';
-                updateCartUI();
-                renderPOSProducts();
-                renderProductTable();
-                renderOrders();
-                renderReports();
-                renderUsers();
-                loadSettings();
-                updateClock();
+                initApp();
                 showAlert('🔑 Password set successfully! You are now logged in.', 'success');
                 return true;
             }
 
-            // Check password
             if (user.password !== password) {
                 document.getElementById('loginError').style.display = 'block';
                 return false;
@@ -1656,18 +1844,7 @@ fQ==" />
             1);
             document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
             document.getElementById('loginError').style.display = 'none';
-            cart = [];
-            discount = 0;
-            discountType = 'percentage';
-            selectedPayment = 'cash';
-            updateCartUI();
-            renderPOSProducts();
-            renderProductTable();
-            renderOrders();
-            renderReports();
-            renderUsers();
-            loadSettings();
-            updateClock();
+            initApp();
             return true;
         }
 
@@ -1692,6 +1869,28 @@ fQ==" />
             renderUsers();
             showAlert('✅ Password for ' + role + ' updated successfully!', 'success');
             return true;
+        }
+
+        // ================================================================
+        // INIT APP
+        // ================================================================
+
+        function initApp() {
+            cart = [];
+            discount = 0;
+            discountType = 'percentage';
+            selectedPayment = 'cash';
+            updateCartUI();
+            renderPOSProducts();
+            renderProductTable();
+            renderOrders();
+            renderReports();
+            renderCustomers();
+            renderUsers();
+            loadSettings();
+            updateClock();
+            checkLowStock();
+            updatePaymentDisplay();
         }
 
         // ================================================================
@@ -1724,6 +1923,58 @@ fQ==" />
         const $$ = sel => document.querySelectorAll(sel);
 
         // ================================================================
+        // LOW STOCK CHECK
+        // ================================================================
+
+        function checkLowStock() {
+            const products = getProducts();
+            const settings = getSettings();
+            const threshold = settings.lowStockLevel || 10;
+            const lowStock = products.filter(p => p.stock < threshold);
+
+            const banner = document.getElementById('lowStockBanner');
+            const countEl = document.getElementById('lowStockCount');
+
+            if (lowStock.length > 0) {
+                banner.classList.add('show');
+                countEl.textContent = lowStock.length;
+            } else {
+                banner.classList.remove('show');
+            }
+
+            // Update report stat
+            document.getElementById('statLowStock').textContent = lowStock.length;
+
+            return lowStock;
+        }
+
+        // ================================================================
+        // PAYMENT DISPLAY UPDATE
+        // ================================================================
+
+        function updatePaymentDisplay() {
+            const settings = getSettings();
+
+            document.getElementById('displayMpesaPaybill').textContent = settings.mpesaPaybill || '247247';
+            document.getElementById('displayMpesaTill').textContent = settings.mpesaTill || '123456';
+            document.getElementById('displayBankName').textContent = settings.bankName || 'Equity Bank';
+            document.getElementById('displayBankAccount').textContent = settings.bankAccount || '0123456789';
+            document.getElementById('displayBankBranch').textContent = settings.bankBranch || 'Nairobi CBD';
+
+            document.getElementById('displayMpesaPaybill2').textContent = settings.mpesaPaybill || '247247';
+            document.getElementById('displayMpesaTill2').textContent = settings.mpesaTill || '123456';
+            document.getElementById('displayBankName2').textContent = settings.bankName || 'Equity Bank';
+            document.getElementById('displayBankAccount2').textContent = settings.bankAccount || '0123456789';
+            document.getElementById('displayBankBranch2').textContent = settings.bankBranch || 'Nairobi CBD';
+
+            document.getElementById('mpesaPaybill').value = settings.mpesaPaybill || '247247';
+            document.getElementById('mpesaTill').value = settings.mpesaTill || '123456';
+            document.getElementById('bankName').value = settings.bankName || 'Equity Bank';
+            document.getElementById('bankAccount').value = settings.bankAccount || '0123456789';
+            document.getElementById('bankBranch').value = settings.bankBranch || 'Nairobi CBD';
+        }
+
+        // ================================================================
         // RENDER: POS Products
         // ================================================================
 
@@ -1752,7 +2003,7 @@ fQ==" />
                     <div class="p-name">${p.name}</div>
                     <div class="p-price">${settings.currencySymbol} ${p.price.toFixed(2)}</div>
                     <div class="p-code">${p.code}</div>
-                    <div class="p-stock ${p.stock < 10 ? 'low' : ''}">📦 ${p.stock} left</div>
+                    <div class="p-stock ${p.stock < (settings.lowStockLevel || 10) ? 'low' : ''}">📦 ${p.stock} left</div>
                 </div>
             `).join('');
 
@@ -1890,6 +2141,7 @@ fQ==" />
             }
             const total = subtotal + tax - discountAmount;
 
+            // Create order
             const orders = getOrders();
             const order = {
                 id: getNextId(orders),
@@ -1907,6 +2159,7 @@ fQ==" />
             orders.push(order);
             saveOrders(orders);
 
+            // Update stock
             const products = getProducts();
             cart.forEach(cartItem => {
                 const prod = products.find(p => p.id === cartItem.id);
@@ -1916,8 +2169,13 @@ fQ==" />
             });
             saveProducts(products);
 
+            // Add customer (if name provided during checkout)
+            // This is simplified - in production you'd have a customer selection
+
+            // Show receipt
             showReceipt(order);
 
+            // Reset cart
             cart = [];
             discount = 0;
             updateCartUI();
@@ -1925,6 +2183,7 @@ fQ==" />
             renderProductTable();
             renderOrders();
             renderReports();
+            checkLowStock();
 
             showAlert('✅ Order #' + order.id + ' completed successfully!', 'success');
         }
@@ -1944,6 +2203,7 @@ fQ==" />
                     <div style="font-size:11px;color:#666;">${date}</div>
                     <div style="font-size:11px;color:#666;">Order #${order.id}</div>
                     <div style="font-size:11px;color:#666;">Cashier: ${order.user}</div>
+                    <div style="font-size:11px;color:#666;">Payment: ${order.payment.toUpperCase()}</div>
                 </div>
                 <div style="border-top:2px dashed #ddd;padding-top:8px;"></div>
             `;
@@ -1963,11 +2223,15 @@ fQ==" />
                 <div class="receipt-item"><span>Tax (${settings.taxRate}%)</span><span>${settings.currencySymbol} ${order.tax.toFixed(2)}</span></div>
                 ${order.discount > 0 ? `<div class="receipt-item"><span>Discount</span><span>-${settings.currencySymbol} ${order.discount.toFixed(2)}</span></div>` : ''}
                 <div class="receipt-total">Total: ${settings.currencySymbol} ${order.total.toFixed(2)}</div>
-                <div style="text-align:center;font-size:11px;color:#666;margin-top:6px;">
-                    Payment: ${order.payment.toUpperCase()}
+
+                <div style="border-top:2px dashed #ddd;margin-top:10px;padding-top:8px;">
+                    <div style="font-size:11px;color:#666;text-align:center;">
+                        <strong>M-Pesa:</strong> Paybill ${settings.mpesaPaybill} Acc: ${settings.mpesaTill}<br />
+                        <strong>Bank:</strong> ${settings.bankName} ${settings.bankAccount}
+                    </div>
                 </div>
                 <div style="text-align:center;font-size:11px;color:#999;margin-top:6px;">
-                    Asante sana! Thank you for your purchase!
+                    Asante sana! Thank you!
                 </div>
             `;
 
@@ -2028,6 +2292,7 @@ fQ==" />
             $('prodCode').value = product.code;
             $('prodPrice').value = product.price;
             $('prodStock').value = product.stock;
+            $('prodCost').value = product.cost || 0;
             $('prodCategory').value = product.category;
             $('productModalTitle').textContent = '✏️ Edit Product';
             $('productModal').classList.add('show');
@@ -2041,6 +2306,7 @@ fQ==" />
                 renderProductTable();
                 renderPOSProducts();
                 renderReports();
+                checkLowStock();
                 showAlert('🗑️ Product deleted', 'info');
             });
         }
@@ -2051,6 +2317,7 @@ fQ==" />
             const code = $('prodCode').value.trim().toUpperCase();
             const price = parseFloat($('prodPrice').value);
             const stock = parseInt($('prodStock').value) || 0;
+            const cost = parseFloat($('prodCost').value) || 0;
             const category = $('prodCategory').value;
 
             if (!name || !code || isNaN(price) || price < 0) {
@@ -2067,6 +2334,7 @@ fQ==" />
                     existing.code = code;
                     existing.price = price;
                     existing.stock = stock;
+                    existing.cost = cost;
                     existing.category = category;
                 }
                 showAlert('✅ Product updated successfully!', 'success');
@@ -2077,6 +2345,7 @@ fQ==" />
                     code,
                     price,
                     stock,
+                    cost,
                     category
                 });
                 showAlert('✅ Product added successfully!', 'success');
@@ -2089,6 +2358,7 @@ fQ==" />
             renderProductTable();
             renderPOSProducts();
             renderReports();
+            checkLowStock();
         }
 
         // ================================================================
@@ -2150,6 +2420,125 @@ fQ==" />
         }
 
         // ================================================================
+        // CUSTOMERS
+        // ================================================================
+
+        function renderCustomers() {
+            const customers = getCustomers();
+            const search = $('customerSearch').value.toLowerCase();
+
+            const filtered = customers.filter(c =>
+                c.name.toLowerCase().includes(search) ||
+                c.phone.includes(search) ||
+                (c.email && c.email.toLowerCase().includes(search))
+            );
+
+            const tbody = $('customerTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No customers found</td></tr>';
+                $('customerCount').textContent = '0 customers';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(c => {
+                // Calculate orders and total spent
+                const orders = getOrders().filter(o => o.customerId === c.id);
+                const totalSpent = orders.reduce((sum, o) => sum + o.total, 0);
+                return `
+                    <tr>
+                        <td>${c.id}</td>
+                        <td><strong>${c.name}</strong></td>
+                        <td>${c.phone || '-'}</td>
+                        <td>${c.email || '-'}</td>
+                        <td>${orders.length}</td>
+                        <td>KES ${totalSpent.toFixed(2)}</td>
+                        <td>
+                            <button class="btn-edit" onclick="editCustomer(${c.id})">✏️</button>
+                            <button class="btn-delete" onclick="deleteCustomer(${c.id})">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            $('customerCount').textContent = `${filtered.length} customers`;
+            $('statCustomers').textContent = filtered.length;
+        }
+
+        function addCustomer() {
+            $('editCustomerId').value = '';
+            $('custName').value = '';
+            $('custPhone').value = '';
+            $('custEmail').value = '';
+            $('customerModalTitle').textContent = '➕ Add Customer';
+            $('customerModal').classList.add('show');
+        }
+
+        function editCustomer(id) {
+            const customers = getCustomers();
+            const customer = customers.find(c => c.id === id);
+            if (!customer) return;
+
+            $('editCustomerId').value = id;
+            $('custName').value = customer.name;
+            $('custPhone').value = customer.phone || '';
+            $('custEmail').value = customer.email || '';
+            $('customerModalTitle').textContent = '✏️ Edit Customer';
+            $('customerModal').classList.add('show');
+        }
+
+        function deleteCustomer(id) {
+            showConfirm('Delete Customer', 'Are you sure you want to delete this customer?', () => {
+                let customers = getCustomers();
+                customers = customers.filter(c => c.id !== id);
+                saveCustomers(customers);
+                renderCustomers();
+                showAlert('🗑️ Customer deleted', 'info');
+            });
+        }
+
+        function saveCustomer() {
+            const id = parseInt($('editCustomerId').value);
+            const name = $('custName').value.trim();
+            const phone = $('custPhone').value.trim();
+            const email = $('custEmail').value.trim();
+
+            if (!name) {
+                showAlert('⚠️ Please enter customer name', 'danger');
+                return;
+            }
+
+            let customers = getCustomers();
+
+            if (id) {
+                const existing = customers.find(c => c.id === id);
+                if (existing) {
+                    existing.name = name;
+                    existing.phone = phone;
+                    existing.email = email;
+                }
+                showAlert('✅ Customer updated successfully!', 'success');
+            } else {
+                customers.push({
+                    id: getNextId(customers),
+                    name,
+                    phone,
+                    email
+                });
+                showAlert('✅ Customer added successfully!', 'success');
+            }
+
+            saveCustomers(customers);
+            $('customerModal').classList.remove('show');
+            $('editCustomerId').value = '';
+            renderCustomers();
+        }
+
+        function exportCustomers() {
+            const customers = getCustomers();
+            exportCSV(customers, `customers_${new Date().toISOString().slice(0,10)}.csv`);
+        }
+
+        // ================================================================
         // REPORTS
         // ================================================================
 
@@ -2168,16 +2557,33 @@ fQ==" />
             const todayOrders = orders.filter(o => new Date(o.date) >= today);
             const todaySales = todayOrders.reduce((sum, o) => sum + o.total, 0);
 
+            // Product sales
             const productSales = {};
             filtered.forEach(o => {
                 o.items.forEach(item => {
                     if (!productSales[item.name]) {
-                        productSales[item.name] = { qty: 0, revenue: 0 };
+                        productSales[item.name] = { qty: 0, revenue: 0, cost: 0 };
                     }
                     productSales[item.name].qty += item.qty;
                     productSales[item.name].revenue += item.price * item.qty;
                 });
             });
+
+            // Calculate profit (using product costs)
+            const products = getProducts();
+            let totalCost = 0;
+            let totalRevenue = 0;
+            filtered.forEach(o => {
+                o.items.forEach(item => {
+                    const prod = products.find(p => p.id === item.id);
+                    if (prod && prod.cost) {
+                        totalCost += prod.cost * item.qty;
+                    }
+                    totalRevenue += item.price * item.qty;
+                });
+            });
+            const profit = totalRevenue - totalCost;
+
             let topProduct = '-';
             let topQty = 0;
             for (const [name, data] of Object.entries(productSales)) {
@@ -2196,7 +2602,13 @@ fQ==" />
             $('statTopProduct').textContent = topProduct || '-';
             $('statTodaySales').textContent = `${settings.currencySymbol} ${todaySales.toFixed(2)}`;
             $('statCustomers').textContent = customerCount;
+            $('statProfit').textContent = `${settings.currencySymbol} ${profit.toFixed(2)}`;
 
+            // Check low stock
+            const lowStock = checkLowStock();
+            $('statLowStock').textContent = lowStock.length;
+
+            // Report table
             const sorted = Object.entries(productSales)
                 .sort((a, b) => b[1].revenue - a[1].revenue)
                 .slice(0, 20);
@@ -2271,13 +2683,21 @@ fQ==" />
             $('storeName').value = settings.storeName || 'My Kenyan Store';
             $('taxRate').value = settings.taxRate || 16;
             $('currencySymbol').value = settings.currencySymbol || 'KES';
+            $('lowStockLevel').value = settings.lowStockLevel || 10;
+            updatePaymentDisplay();
         }
 
         function saveSettings() {
             const settings = {
                 storeName: $('storeName').value.trim() || 'My Kenyan Store',
                 taxRate: parseFloat($('taxRate').value) || 16,
-                currencySymbol: $('currencySymbol').value.trim() || 'KES'
+                currencySymbol: $('currencySymbol').value.trim() || 'KES',
+                lowStockLevel: parseInt($('lowStockLevel').value) || 10,
+                mpesaPaybill: $('mpesaPaybill').value.trim() || '247247',
+                mpesaTill: $('mpesaTill').value.trim() || '123456',
+                bankName: $('bankName').value.trim() || 'Equity Bank',
+                bankAccount: $('bankAccount').value.trim() || '0123456789',
+                bankBranch: $('bankBranch').value.trim() || 'Nairobi CBD'
             };
             saveSettings(settings);
             showAlert('✅ Settings saved successfully!', 'success');
@@ -2286,6 +2706,20 @@ fQ==" />
             renderProductTable();
             renderOrders();
             renderReports();
+            checkLowStock();
+            updatePaymentDisplay();
+        }
+
+        function savePaymentDetails() {
+            const settings = getSettings();
+            settings.mpesaPaybill = $('mpesaPaybill').value.trim() || '247247';
+            settings.mpesaTill = $('mpesaTill').value.trim() || '123456';
+            settings.bankName = $('bankName').value.trim() || 'Equity Bank';
+            settings.bankAccount = $('bankAccount').value.trim() || '0123456789';
+            settings.bankBranch = $('bankBranch').value.trim() || 'Nairobi CBD';
+            saveSettings(settings);
+            updatePaymentDisplay();
+            showAlert('✅ Payment details saved successfully!', 'success');
         }
 
         // ================================================================
@@ -2297,6 +2731,7 @@ fQ==" />
                 products: getProducts(),
                 orders: getOrders(),
                 users: getUsers(),
+                customers: getCustomers(),
                 settings: getSettings(),
                 timestamp: new Date().toISOString()
             };
@@ -2305,7 +2740,6 @@ fQ==" />
             const blob = new Blob([jsonData], { type: 'application/json' });
             const file = new File([blob], `pos_backup_${new Date().toISOString().slice(0,10)}.json`, { type: 'application/json' });
 
-            // Create a download link (simplified Google Drive approach)
             const url = URL.createObjectURL(file);
             const a = document.createElement('a');
             a.href = url;
@@ -2316,8 +2750,6 @@ fQ==" />
             URL.revokeObjectURL(url);
 
             showAlert('📦 Backup file downloaded! Upload it to Google Drive manually or click the Google Drive button.', 'success');
-
-            // Open Google Drive in new tab
             window.open('https://drive.google.com', '_blank');
         }
 
@@ -2330,6 +2762,7 @@ fQ==" />
                 products: getProducts(),
                 orders: getOrders(),
                 users: getUsers(),
+                customers: getCustomers(),
                 settings: getSettings(),
                 timestamp: new Date().toISOString()
             };
@@ -2352,6 +2785,7 @@ fQ==" />
                     if (data.products) saveProducts(data.products);
                     if (data.orders) saveOrders(data.orders);
                     if (data.users) saveUsers(data.users);
+                    if (data.customers) saveCustomers(data.customers);
                     if (data.settings) saveSettings(data.settings);
                     showAlert('📂 Data restored successfully!', 'success');
                     loadSettings();
@@ -2359,7 +2793,10 @@ fQ==" />
                     renderProductTable();
                     renderOrders();
                     renderReports();
+                    renderCustomers();
                     renderUsers();
+                    checkLowStock();
+                    updatePaymentDisplay();
                 } catch (err) {
                     showAlert('⚠️ Invalid backup file!', 'danger');
                 }
@@ -2372,26 +2809,32 @@ fQ==" />
                 showConfirm('⚠️ Final Confirmation', 'This is irreversible! Are you absolutely sure?', () => {
                     DB.clear();
                     saveProducts([
-                        { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
-                        { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
-                        { id: 3, name: 'Samosas', code: 'SAM', price: 80, stock: 60, category: 'food' },
-                        { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
-                        { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
-                        { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
+                        { id: 1, name: 'Chapati', code: 'CHP', price: 50, cost: 25, stock: 50, category: 'food' },
+                        { id: 2, name: 'Mandazi', code: 'MAN', price: 30, cost: 15, stock: 40, category: 'food' },
+                        { id: 3, name: 'Samosas', code: 'SAM', price: 80, cost: 40, stock: 60, category: 'food' },
+                        { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, cost: 200, stock: 30, category: 'food' },
+                        { id: 5, name: 'Ugali', code: 'UGA', price: 120, cost: 60, stock: 25, category: 'food' },
+                        { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, cost: 35, stock: 20, category: 'food' },
                     ]);
                     saveUsers([
                         { id: 1, username: 'admin', password: '', role: 'admin' },
                         { id: 2, username: 'cashier', password: '', role: 'cashier' },
                         { id: 3, username: 'manager', password: '', role: 'manager' },
                     ]);
-                    saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES' });
+                    saveCustomers([]);
+                    saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES', lowStockLevel: 10,
+                        mpesaPaybill: '247247', mpesaTill: '123456', bankName: 'Equity Bank', bankAccount: '0123456789',
+                        bankBranch: 'Nairobi CBD' });
                     saveOrders([]);
                     loadSettings();
                     renderPOSProducts();
                     renderProductTable();
                     renderOrders();
                     renderReports();
+                    renderCustomers();
                     renderUsers();
+                    checkLowStock();
+                    updatePaymentDisplay();
                     showAlert('✅ All data cleared and reset to defaults', 'info');
                 });
             });
@@ -2471,6 +2914,7 @@ fQ==" />
                     const priceIdx = headers.indexOf('price');
                     const stockIdx = headers.indexOf('stock');
                     const catIdx = headers.indexOf('category');
+                    const costIdx = headers.indexOf('cost');
 
                     if (nameIdx === -1 || priceIdx === -1) {
                         showAlert('⚠️ CSV must have "name" and "price" columns', 'danger');
@@ -2486,6 +2930,7 @@ fQ==" />
                         const price = parseFloat(cols[priceIdx]) || 0;
                         const stock = stockIdx >= 0 ? parseInt(cols[stockIdx]) || 0 : 10;
                         const category = catIdx >= 0 ? (cols[catIdx] || 'other').toLowerCase() : 'other';
+                        const cost = costIdx >= 0 ? parseFloat(cols[costIdx]) || 0 : 0;
 
                         if (name && price > 0) {
                             const existing = products.find(p => p.code === code || p.name === name);
@@ -2494,6 +2939,7 @@ fQ==" />
                                 existing.code = code;
                                 existing.price = price;
                                 existing.stock = stock;
+                                existing.cost = cost;
                                 existing.category = category;
                             } else {
                                 products.push({
@@ -2502,6 +2948,7 @@ fQ==" />
                                     code,
                                     price,
                                     stock,
+                                    cost,
                                     category
                                 });
                             }
@@ -2512,6 +2959,7 @@ fQ==" />
                     saveProducts(products);
                     renderPOSProducts();
                     renderProductTable();
+                    checkLowStock();
                     showAlert(`✅ Imported ${imported} products successfully!`, 'success');
                 } catch (err) {
                     showAlert('⚠️ Error importing CSV: ' + err.message, 'danger');
@@ -2521,7 +2969,7 @@ fQ==" />
         }
 
         // ================================================================
-        // ALERT SYSTEM (Toast)
+        // ALERT SYSTEM
         // ================================================================
 
         function showAlert(message, type = 'info') {
@@ -2611,6 +3059,7 @@ fQ==" />
                 if (tab === 'products') renderProductTable();
                 if (tab === 'orders') renderOrders();
                 if (tab === 'reports') renderReports();
+                if (tab === 'customers') renderCustomers();
                 if (tab === 'settings') {
                     renderUsers();
                     loadSettings();
@@ -2629,8 +3078,7 @@ fQ==" />
         // Payment methods
         document.querySelectorAll('.payment-methods button').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.payment-methods button').forEach(b => b.classList.remove(
-                'selected'));
+                document.querySelectorAll('.payment-methods button').forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
                 selectedPayment = btn.dataset.payment;
             });
@@ -2677,6 +3125,7 @@ fQ==" />
             $('prodCode').value = '';
             $('prodPrice').value = '';
             $('prodStock').value = '';
+            $('prodCost').value = '';
             $('prodCategory').value = 'food';
             $('productModalTitle').textContent = '➕ Add Product';
             $('productModal').classList.add('show');
@@ -2704,6 +3153,15 @@ fQ==" />
             }
         });
 
+        // Customer management
+        $('addCustomerBtn').addEventListener('click', addCustomer);
+        $('closeCustomerModal').addEventListener('click', () => {
+            $('customerModal').classList.remove('show');
+        });
+        $('saveCustomerBtn').addEventListener('click', saveCustomer);
+        $('customerSearch').addEventListener('input', renderCustomers);
+        $('exportCustomersBtn').addEventListener('click', exportCustomers);
+
         // Orders
         $('filterOrdersBtn').addEventListener('click', renderOrders);
         $('clearOrderFiltersBtn').addEventListener('click', () => {
@@ -2712,7 +3170,6 @@ fQ==" />
             renderOrders();
         });
         $('exportOrdersBtn').addEventListener('click', exportOrders);
-
         $('printOrdersBtn').addEventListener('click', () => {
             window.print();
         });
@@ -2738,38 +3195,9 @@ fQ==" />
             $('newPasswordInput').value = '';
         });
 
-        $('addUserBtn').addEventListener('click', () => {
-            const username = $('newUsername').value.trim();
-            const password = $('newPassword').value.trim();
-            const role = $('newUserRole').value;
-
-            if (!username || !password) {
-                showAlert('⚠️ Please enter username and password', 'danger');
-                return;
-            }
-
-            const users = getUsers();
-            if (users.find(u => u.username === username)) {
-                showAlert('⚠️ Username already exists', 'danger');
-                return;
-            }
-
-            users.push({
-                id: getNextId(users),
-                username,
-                password,
-                role
-            });
-
-            saveUsers(users);
-            renderUsers();
-            $('newUsername').value = '';
-            $('newPassword').value = '';
-            showAlert('✅ User added successfully!', 'success');
-        });
-
         // Settings - Store
         $('saveSettingsBtn').addEventListener('click', saveSettings);
+        $('savePaymentDetailsBtn').addEventListener('click', savePaymentDetails);
 
         // Settings - Data Management
         $('backupDataBtn').addEventListener('click', backupData);
@@ -2862,12 +3290,12 @@ fQ==" />
         // Pre-populate with sample data if empty
         if (getProducts().length === 0) {
             saveProducts([
-                { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
-                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
-                { id: 3, name: 'Samosas', code: 'SAM', price: 80, stock: 60, category: 'food' },
-                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
-                { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
-                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
+                { id: 1, name: 'Chapati', code: 'CHP', price: 50, cost: 25, stock: 50, category: 'food' },
+                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, cost: 15, stock: 40, category: 'food' },
+                { id: 3, name: 'Samosas', code: 'SAM', price: 80, cost: 40, stock: 60, category: 'food' },
+                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, cost: 200, stock: 30, category: 'food' },
+                { id: 5, name: 'Ugali', code: 'UGA', price: 120, cost: 60, stock: 25, category: 'food' },
+                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, cost: 35, stock: 20, category: 'food' },
             ]);
         }
 
@@ -2879,15 +3307,29 @@ fQ==" />
             ]);
         }
 
-        if (getSettings().length === 0) {
-            saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES' });
+        if (getCustomers().length === 0) {
+            saveCustomers([
+                { id: 1, name: 'John Doe', phone: '0712345678', email: 'john@email.com' },
+                { id: 2, name: 'Jane Smith', phone: '0723456789', email: 'jane@email.com' },
+            ]);
         }
 
-        console.log('🇰🇪 POS System loaded successfully!');
+        if (getSettings().length === 0) {
+            saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES', lowStockLevel: 10,
+                mpesaPaybill: '247247', mpesaTill: '123456', bankName: 'Equity Bank', bankAccount: '0123456789',
+                bankBranch: 'Nairobi CBD' });
+        }
+
+        console.log('🇰🇪 Complete POS System loaded successfully!');
         console.log(`📦 Products: ${getProducts().length}`);
         console.log(`📋 Orders: ${getOrders().length}`);
         console.log(`👤 Users: ${getUsers().length}`);
+        console.log(`👥 Customers: ${getCustomers().length}`);
         console.log('💡 No passwords are hardcoded. Users set their own passwords!');
+        console.log('💳 Payment details can be configured in Settings');
+
+        // Auto-login for demo (remove for production)
+        // login('admin', 'admin123');
     </script>
 
 </body>
