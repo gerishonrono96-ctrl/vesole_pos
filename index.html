@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complete POS System - All-in-One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>POS System - Kenya</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBPUyBTeXN0ZW0gLSBLZW55YSIsCiAgInNob3J0X25hbWUiOiAiUE9TIiwKICAiZGVzY3JpcHRpb24iOiAiQ29tcGxldGUgUG9pbnQgb2YgU2FsZSBTZXN0ZW0gZm9yIEtlbnlhbiBCdXNpbmVzc2VzIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiM2NjdlZWEiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIHJ4PScyMCcgZmlsbD0nJTIzNjY3ZWVhJy8+PHRleHQgeD0nNTAnIHk9JzU4JyBmb250LXNpemU9JzQwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmaWxsPSd3aGl0ZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnPkVTPC90ZXh0Pjwvc3ZnPg==",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+fQ==" />
+
     <style>
-        /* ================================================================
-           GLOBAL STYLES
-           ================================================================ */
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -21,9 +28,7 @@
             padding: 20px;
         }
 
-        /* ================================================================
-           LOGIN SCREEN
-           ================================================================ */
+        /* ===== LOGIN SCREEN ===== */
         #loginScreen {
             display: flex;
             justify-content: center;
@@ -33,7 +38,6 @@
             position: fixed;
             inset: 0;
             z-index: 9999;
-            transition: opacity 0.3s;
         }
 
         #loginScreen.hidden {
@@ -42,42 +46,61 @@
 
         .login-box {
             background: white;
-            padding: 50px 40px;
+            padding: 40px 35px;
             border-radius: 20px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            width: 380px;
-            max-width: 90%;
+            width: 400px;
+            max-width: 95%;
             animation: slideUp 0.5s ease;
         }
 
         .login-box h2 {
             text-align: center;
             color: #1a1a2e;
-            margin-bottom: 8px;
-            font-size: 28px;
+            margin-bottom: 4px;
+            font-size: 26px;
         }
 
-        .login-box p {
+        .login-box .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-size: 14px;
         }
 
+        .login-box label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .login-box select,
         .login-box input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px 14px;
             border: 2px solid #e8ecf1;
             border-radius: 10px;
             margin-bottom: 14px;
             font-size: 14px;
             transition: 0.2s;
+            background: white;
         }
 
+        .login-box select:focus,
         .login-box input:focus {
             border-color: #667eea;
             outline: none;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-box .password-hint {
+            font-size: 11px;
+            color: #999;
+            margin-top: -10px;
+            margin-bottom: 12px;
+            display: block;
         }
 
         .login-box button {
@@ -114,11 +137,14 @@
             background: #f8f9fc;
             padding: 10px;
             border-radius: 8px;
+            line-height: 1.8;
         }
 
-        /* ================================================================
-           MAIN APP
-           ================================================================ */
+        .login-hint strong {
+            color: #1a1a2e;
+        }
+
+        /* ===== MAIN APP ===== */
         #app {
             display: none;
             max-width: 1440px;
@@ -129,24 +155,22 @@
             display: block;
         }
 
-        /* ================================================================
-           TOP BAR
-           ================================================================ */
+        /* ===== TOP BAR ===== */
         .topbar {
             background: white;
             border-radius: 16px;
-            padding: 16px 24px;
-            margin-bottom: 20px;
+            padding: 14px 20px;
+            margin-bottom: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .topbar .brand {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #1a1a2e;
         }
@@ -158,8 +182,8 @@
         .topbar .user-info {
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-size: 14px;
+            gap: 12px;
+            font-size: 13px;
             flex-wrap: wrap;
         }
 
@@ -170,60 +194,57 @@
 
         .topbar .user-info .badge {
             background: #e8ecf1;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
         }
 
         .topbar .user-info .time {
             color: #666;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .topbar button {
-            padding: 8px 20px;
+            padding: 7px 16px;
             background: #e53e3e;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             transition: 0.2s;
         }
 
         .topbar button:hover {
             background: #c53030;
-            transform: scale(1.05);
         }
 
-        /* ================================================================
-           TABS
-           ================================================================ */
+        /* ===== TABS ===== */
         .tabs {
             display: flex;
             gap: 4px;
             background: white;
-            border-radius: 16px;
-            padding: 6px;
-            margin-bottom: 20px;
+            border-radius: 14px;
+            padding: 5px;
+            margin-bottom: 16px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             flex-wrap: wrap;
         }
 
         .tabs button {
-            padding: 12px 24px;
+            padding: 10px 18px;
             border: none;
             background: transparent;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: 0.2s;
             color: #666;
             flex: 1;
-            min-width: 80px;
+            min-width: 70px;
         }
 
         .tabs button:hover {
@@ -236,9 +257,7 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
-        /* ================================================================
-           TAB CONTENT
-           ================================================================ */
+        /* ===== TAB CONTENT ===== */
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease;
@@ -270,13 +289,11 @@
             }
         }
 
-        /* ================================================================
-           POS GRID
-           ================================================================ */
+        /* ===== POS GRID ===== */
         .pos-grid {
             display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 20px;
+            grid-template-columns: 1fr 400px;
+            gap: 16px;
         }
 
         @media (max-width: 1024px) {
@@ -288,21 +305,19 @@
             }
         }
 
-        /* ================================================================
-           PRODUCT GRID
-           ================================================================ */
+        /* ===== PRODUCT GRID ===== */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
-            margin-bottom: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
         .product-card {
             background: white;
             border: 2px solid #e8ecf1;
             border-radius: 12px;
-            padding: 16px 12px;
+            padding: 14px 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -311,30 +326,30 @@
 
         .product-card:hover {
             border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.12);
         }
 
         .product-card .p-name {
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             color: #1a1a2e;
         }
 
         .product-card .p-price {
             color: #667eea;
             font-weight: 700;
-            font-size: 16px;
-            margin: 4px 0;
+            font-size: 15px;
+            margin: 3px 0;
         }
 
         .product-card .p-code {
-            font-size: 11px;
+            font-size: 10px;
             color: #999;
         }
 
         .product-card .p-stock {
-            font-size: 11px;
+            font-size: 10px;
             color: #38a169;
             font-weight: 500;
         }
@@ -345,15 +360,15 @@
 
         .product-card .p-edit {
             position: absolute;
-            top: 6px;
-            right: 6px;
+            top: 4px;
+            right: 4px;
             background: #e8ecf1;
             border: none;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             transition: 0.2s;
         }
 
@@ -362,24 +377,22 @@
             color: white;
         }
 
-        /* ================================================================
-           SEARCH & FILTERS
-           ================================================================ */
+        /* ===== SEARCH & FILTERS ===== */
         .search-filters {
             display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 8px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
 
         .search-filters input,
         .search-filters select {
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 2px solid #e8ecf1;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
             flex: 1;
-            min-width: 150px;
+            min-width: 120px;
             transition: 0.2s;
         }
 
@@ -387,37 +400,34 @@
         .search-filters select:focus {
             border-color: #667eea;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        /* ================================================================
-           CART
-           ================================================================ */
+        /* ===== CART ===== */
         .cart-panel {
             background: white;
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 16px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             height: fit-content;
             position: sticky;
-            top: 20px;
-            max-height: calc(100vh - 120px);
+            top: 16px;
+            max-height: calc(100vh - 100px);
             display: flex;
             flex-direction: column;
         }
 
         .cart-panel h2 {
-            font-size: 18px;
-            margin-bottom: 12px;
+            font-size: 17px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .cart-panel h2 span {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
             color: #666;
         }
@@ -425,9 +435,9 @@
         .cart-items {
             flex: 1;
             overflow-y: auto;
-            margin-bottom: 12px;
-            min-height: 100px;
-            max-height: 350px;
+            margin-bottom: 10px;
+            min-height: 80px;
+            max-height: 280px;
         }
 
         .cart-items::-webkit-scrollbar {
@@ -443,33 +453,33 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #f0f2f5;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .cart-item .ci-name {
             font-weight: 500;
             flex: 1;
-            min-width: 60px;
+            min-width: 50px;
         }
 
         .cart-item .ci-actions {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .cart-item .ci-actions button {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border: none;
             border-radius: 50%;
             background: #e8ecf1;
             cursor: pointer;
             font-weight: 700;
             transition: 0.2s;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .cart-item .ci-actions button:hover {
@@ -479,36 +489,38 @@
 
         .cart-item .ci-qty {
             font-weight: 600;
-            min-width: 20px;
+            min-width: 18px;
             text-align: center;
+            font-size: 13px;
         }
 
         .cart-item .ci-total {
             font-weight: 600;
-            min-width: 60px;
+            min-width: 50px;
             text-align: right;
-            margin-left: 8px;
+            margin-left: 6px;
             color: #1a1a2e;
+            font-size: 12px;
         }
 
         .cart-totals {
             border-top: 2px solid #e8ecf1;
-            padding-top: 12px;
+            padding-top: 10px;
         }
 
         .cart-totals .row {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
-            font-size: 14px;
+            padding: 3px 0;
+            font-size: 13px;
         }
 
         .cart-totals .row.total {
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
             border-top: 1px solid #e8ecf1;
-            margin-top: 6px;
-            padding-top: 10px;
+            margin-top: 4px;
+            padding-top: 8px;
             color: #1a1a2e;
         }
 
@@ -527,18 +539,18 @@
         /* Payment Methods */
         .payment-methods {
             display: flex;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 6px;
         }
 
         .payment-methods button {
             flex: 1;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border: 2px solid #e8ecf1;
             background: white;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             transition: 0.2s;
             color: #666;
@@ -558,21 +570,21 @@
         /* Cart Actions */
         .cart-actions {
             display: flex;
-            gap: 8px;
-            margin-top: 12px;
+            gap: 6px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
 
         .cart-actions button {
             flex: 1;
-            padding: 10px;
+            padding: 8px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: 0.2s;
-            min-width: 70px;
+            min-width: 60px;
         }
 
         .btn-checkout {
@@ -582,7 +594,6 @@
 
         .btn-checkout:hover {
             background: #5a67d8;
-            transform: scale(1.02);
         }
 
         .btn-clear {
@@ -601,29 +612,25 @@
 
         .btn-discount:hover {
             background: #ed8936;
-            transform: scale(1.02);
         }
 
-        /* ================================================================
-           PRODUCT MANAGEMENT
-           ================================================================ */
+        /* ===== PRODUCT MANAGEMENT ===== */
         .mgmt-controls {
             display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
             align-items: center;
         }
 
         .mgmt-controls input,
         .mgmt-controls select {
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 2px solid #e8ecf1;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
             flex: 1;
-            min-width: 150px;
-            transition: 0.2s;
+            min-width: 120px;
         }
 
         .mgmt-controls input:focus,
@@ -633,7 +640,7 @@
         }
 
         .mgmt-controls button {
-            padding: 10px 24px;
+            padding: 8px 18px;
             background: #667eea;
             color: white;
             border: none;
@@ -642,11 +649,11 @@
             cursor: pointer;
             transition: 0.2s;
             white-space: nowrap;
+            font-size: 13px;
         }
 
         .mgmt-controls button:hover {
             background: #5a67d8;
-            transform: scale(1.02);
         }
 
         .mgmt-controls button.btn-danger {
@@ -665,9 +672,7 @@
             background: #2f855a;
         }
 
-        /* ================================================================
-           TABLES
-           ================================================================ */
+        /* ===== TABLES ===== */
         .table-container {
             background: white;
             border-radius: 12px;
@@ -679,14 +684,14 @@
         .table-container table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px;
+            min-width: 500px;
         }
 
         .table-container th {
             background: #f8f9fc;
-            padding: 12px 16px;
+            padding: 10px 14px;
             text-align: left;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #666;
             border-bottom: 2px solid #e8ecf1;
@@ -694,9 +699,9 @@
         }
 
         .table-container td {
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-bottom: 1px solid #f0f2f5;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .table-container tr:hover td {
@@ -704,13 +709,13 @@
         }
 
         .table-container td button {
-            padding: 4px 12px;
+            padding: 3px 10px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            margin-right: 4px;
+            margin-right: 3px;
             transition: 0.2s;
         }
 
@@ -741,34 +746,27 @@
             background: #2f855a;
         }
 
-        /* ================================================================
-           ORDERS
-           ================================================================ */
+        /* ===== ORDERS ===== */
         .orders-grid {
             display: grid;
-            gap: 16px;
+            gap: 12px;
         }
 
         .order-card {
             background: white;
             border-radius: 12px;
-            padding: 16px 20px;
+            padding: 14px 18px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: 0.2s;
-        }
-
-        .order-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .order-card .order-header {
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
             border-bottom: 1px solid #f0f2f5;
-            padding-bottom: 8px;
-            margin-bottom: 8px;
+            padding-bottom: 6px;
+            margin-bottom: 6px;
             flex-wrap: wrap;
             gap: 4px;
         }
@@ -779,100 +777,92 @@
         }
 
         .order-card .order-header .order-status {
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             background: #38a169;
             color: white;
         }
 
         .order-card .order-items {
-            font-size: 13px;
+            font-size: 12px;
             color: #444;
-            margin: 6px 0;
+            margin: 4px 0;
         }
 
         .order-card .order-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 8px;
+            margin-top: 6px;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .order-card .order-total {
             font-weight: 700;
-            font-size: 18px;
+            font-size: 17px;
             color: #667eea;
         }
 
         .order-card .order-payment {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
             background: #f0f2f5;
-            padding: 2px 12px;
+            padding: 2px 10px;
             border-radius: 20px;
         }
 
-        /* ================================================================
-           REPORTS
-           ================================================================ */
+        /* ===== REPORTS ===== */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
         }
 
         .stat-card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
+            padding: 16px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: 0.2s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .stat-card .stat-value {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #1a1a2e;
         }
 
         .stat-card .stat-label {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .stat-card .stat-icon {
-            font-size: 30px;
-            margin-bottom: 6px;
+            font-size: 26px;
+            margin-bottom: 4px;
         }
 
         .report-filters {
             display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
             align-items: center;
         }
 
         .report-filters select,
         .report-filters input {
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 2px solid #e8ecf1;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
             flex: 1;
-            min-width: 150px;
+            min-width: 120px;
         }
 
         .report-filters select:focus,
@@ -882,7 +872,7 @@
         }
 
         .report-filters button {
-            padding: 10px 24px;
+            padding: 8px 18px;
             background: #667eea;
             color: white;
             border: none;
@@ -890,15 +880,14 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 13px;
         }
 
         .report-filters button:hover {
             background: #5a67d8;
         }
 
-        /* ================================================================
-           MODALS
-           ================================================================ */
+        /* ===== MODALS ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -918,8 +907,8 @@
         .modal-box {
             background: white;
             border-radius: 20px;
-            padding: 30px 35px;
-            max-width: 520px;
+            padding: 28px 30px;
+            max-width: 500px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -927,26 +916,17 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
         }
 
-        .modal-box::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .modal-box::-webkit-scrollbar-thumb {
-            background: #c4c8d4;
-            border-radius: 10px;
-        }
-
         .modal-box h2 {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: #1a1a2e;
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .modal-box label {
             display: block;
             font-weight: 600;
-            font-size: 13px;
-            margin-top: 12px;
+            font-size: 12px;
+            margin-top: 10px;
             color: #444;
         }
 
@@ -954,37 +934,35 @@
         .modal-box select,
         .modal-box textarea {
             width: 100%;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 2px solid #e8ecf1;
             border-radius: 8px;
-            font-size: 14px;
-            margin-top: 4px;
+            font-size: 13px;
+            margin-top: 3px;
             transition: 0.2s;
         }
 
         .modal-box input:focus,
-        .modal-box select:focus,
-        .modal-box textarea:focus {
+        .modal-box select:focus {
             border-color: #667eea;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .modal-box .modal-actions {
             display: flex;
             gap: 10px;
-            margin-top: 18px;
+            margin-top: 16px;
         }
 
         .modal-box .modal-actions button {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .modal-box .modal-actions .btn-save {
@@ -994,7 +972,6 @@
 
         .modal-box .modal-actions .btn-save:hover {
             background: #5a67d8;
-            transform: scale(1.02);
         }
 
         .modal-box .modal-actions .btn-cancel {
@@ -1010,17 +987,17 @@
         .modal-box .receipt-item {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
-            font-size: 14px;
+            padding: 3px 0;
+            font-size: 13px;
             border-bottom: 1px solid #f5f5f5;
         }
 
         .modal-box .receipt-total {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             text-align: center;
             color: #667eea;
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
         .modal-box .btn-print {
@@ -1032,23 +1009,19 @@
             border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 8px;
-            transition: 0.2s;
+            margin-top: 6px;
         }
 
         .modal-box .btn-print:hover {
             background: #2f855a;
-            transform: scale(1.02);
         }
 
-        /* ================================================================
-           UTILITY CLASSES
-           ================================================================ */
+        /* ===== UTILITY ===== */
         .empty-state {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             color: #999;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .hidden {
@@ -1061,31 +1034,13 @@
             align-items: center;
         }
 
-        .flex-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gap-8 {
-            gap: 8px;
-        }
-
-        .mt-8 {
-            margin-top: 8px;
-        }
-
-        .mb-8 {
-            margin-bottom: 8px;
-        }
-
         .text-center {
             text-align: center;
         }
 
         .text-muted {
             color: #666;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .text-success {
@@ -1096,36 +1051,34 @@
             color: #e53e3e;
         }
 
-        .fw-bold {
-            font-weight: 700;
+        .mt-8 {
+            margin-top: 8px;
         }
 
-        /* ================================================================
-           PRINT STYLES
-           ================================================================ */
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+
+        /* ===== PRINT ===== */
         @media print {
             .no-print {
                 display: none !important;
             }
-
             .modal-overlay {
                 position: static !important;
                 background: none !important;
                 backdrop-filter: none !important;
                 display: flex !important;
             }
-
             .modal-box {
                 box-shadow: none !important;
                 padding: 20px !important;
                 max-width: 100% !important;
             }
-
             body {
                 padding: 0 !important;
                 background: white !important;
             }
-
             .topbar,
             .tabs,
             .cart-actions,
@@ -1136,50 +1089,39 @@
             }
         }
 
-        /* ================================================================
-           RESPONSIVE
-           ================================================================ */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
-
             .topbar {
-                padding: 12px 16px;
+                padding: 10px 14px;
             }
-
             .topbar .brand {
-                font-size: 18px;
+                font-size: 17px;
             }
-
             .tabs button {
-                padding: 8px 12px;
-                font-size: 12px;
-                min-width: 60px;
+                padding: 6px 10px;
+                font-size: 11px;
+                min-width: 50px;
             }
-
             .modal-box {
-                padding: 20px;
+                padding: 18px;
                 max-width: 100%;
                 margin: 10px;
             }
-
             .login-box {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
-
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
             .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
-
             .pos-grid {
                 grid-template-columns: 1fr;
             }
-
             .cart-panel {
                 position: static;
                 max-height: none;
@@ -1190,22 +1132,18 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
             .mgmt-controls {
                 flex-direction: column;
             }
-
             .mgmt-controls input,
             .mgmt-controls select,
             .mgmt-controls button {
                 width: 100%;
                 min-width: auto;
             }
-
             .search-filters {
                 flex-direction: column;
             }
-
             .search-filters input,
             .search-filters select {
                 width: 100%;
@@ -1221,16 +1159,29 @@
     ================================================================ -->
     <div id="loginScreen">
         <div class="login-box">
-            <h2>🔐 POS System</h2>
-            <p>Sign in to manage your store</p>
-            <input type="text" id="loginUser" placeholder="Username" value="admin" autocomplete="username" />
-            <input type="password" id="loginPass" placeholder="Password" value="admin123" autocomplete="current-password" />
-            <button id="loginBtn">Login</button>
-            <div class="login-error" id="loginError">❌ Invalid username or password</div>
+            <h2>🇰🇪 POS System</h2>
+            <p class="subtitle">Sign in to manage your store</p>
+
+            <label>Select User Role</label>
+            <select id="loginRole">
+                <option value="admin">👑 Admin</option>
+                <option value="manager">📊 Manager</option>
+                <option value="cashier">🛒 Cashier</option>
+            </select>
+
+            <label>Enter Your Password</label>
+            <input type="password" id="loginPass" placeholder="Enter your password" />
+            <span class="password-hint">🔒 First-time users: Set your password below</span>
+
+            <button id="loginBtn">🔐 Login</button>
+            <div class="login-error" id="loginError">❌ Invalid password. Please try again.</div>
+
             <div class="login-hint">
-                <strong>Demo Credentials:</strong><br />
-                admin / admin123 (Manager)<br />
-                cashier / cash123 (Cashier)
+                <strong>📝 First Time Setup:</strong><br />
+                Enter any password you want to set for your role.<br />
+                <span style="color:#667eea;">Your password is stored locally and only you know it!</span><br /><br />
+                <strong>👑 Admin:</strong> Full access • <strong>📊 Manager:</strong> Manage products &amp; orders<br />
+                <strong>🛒 Cashier:</strong> Process sales only
             </div>
         </div>
     </div>
@@ -1242,7 +1193,7 @@
 
         <!-- TOP BAR -->
         <div class="topbar">
-            <div class="brand">🧾 <span>POS</span> System</div>
+            <div class="brand">🇰🇪 <span>POS</span> System</div>
             <div class="user-info">
                 <span class="user-name" id="currentUser">Admin</span>
                 <span class="badge" id="userRole">Manager</span>
@@ -1268,7 +1219,7 @@
                 <!-- LEFT: Products -->
                 <div>
                     <div class="search-filters">
-                        <input type="text" id="posSearch" placeholder="🔍 Search products by name or code..." />
+                        <input type="text" id="posSearch" placeholder="🔍 Search products..." />
                         <select id="posCategory">
                             <option value="all">📂 All Categories</option>
                             <option value="food">🍽️ Food</option>
@@ -1276,10 +1227,10 @@
                             <option value="snack">🍿 Snacks</option>
                             <option value="other">📦 Other</option>
                         </select>
-                        <button id="posRefreshBtn" style="padding:10px 20px;background:#667eea;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;">🔄 Refresh</button>
+                        <button id="posRefreshBtn" style="padding:8px 16px;background:#667eea;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;font-size:13px;">🔄 Refresh</button>
                     </div>
                     <div class="product-grid" id="posProductGrid"></div>
-                    <div style="text-align:center;color:#999;font-size:12px;padding:8px;">
+                    <div style="text-align:center;color:#999;font-size:11px;padding:6px;">
                         Click a product to add to cart • ✏️ to edit
                     </div>
                 </div>
@@ -1296,27 +1247,27 @@
                     <div class="cart-totals">
                         <div class="row">
                             <span class="label">Subtotal</span>
-                            <span class="value" id="cartSubtotal">$0.00</span>
+                            <span class="value" id="cartSubtotal">KES 0.00</span>
                         </div>
                         <div class="row">
-                            <span class="label">Tax (10%)</span>
-                            <span class="value" id="cartTax">$0.00</span>
+                            <span class="label">Tax (16%)</span>
+                            <span class="value" id="cartTax">KES 0.00</span>
                         </div>
                         <div class="row" id="discountRow" style="display:none;">
                             <span class="label">Discount</span>
-                            <span class="value text-success" id="cartDiscount">-$0.00</span>
+                            <span class="value text-success" id="cartDiscount">-KES 0.00</span>
                         </div>
                         <div class="row total">
                             <span>Total</span>
-                            <span class="value" id="cartTotal">$0.00</span>
+                            <span class="value" id="cartTotal">KES 0.00</span>
                         </div>
                     </div>
 
                     <div class="payment-methods">
                         <button class="selected" data-payment="cash">💵 Cash</button>
-                        <button data-payment="credit">💳 Credit</button>
-                        <button data-payment="debit">🏦 Debit</button>
-                        <button data-payment="mobile">📱 Mobile</button>
+                        <button data-payment="mpesa">📱 M-Pesa</button>
+                        <button data-payment="card">💳 Card</button>
+                        <button data-payment="bank">🏦 Bank</button>
                     </div>
 
                     <div class="cart-actions">
@@ -1353,7 +1304,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Code</th>
-                            <th>Price</th>
+                            <th>Price (KES)</th>
                             <th>Stock</th>
                             <th>Category</th>
                             <th>Actions</th>
@@ -1362,7 +1313,7 @@
                     <tbody id="productTableBody"></tbody>
                 </table>
             </div>
-            <div style="margin-top:12px;text-align:right;color:#999;font-size:12px;" id="productCount"></div>
+            <div style="margin-top:10px;text-align:right;color:#999;font-size:11px;" id="productCount"></div>
         </div>
 
         <!-- ================================================================
@@ -1378,7 +1329,7 @@
                 <button id="printOrdersBtn" class="btn-success">🖨️ Print</button>
             </div>
             <div class="orders-grid" id="ordersGrid"></div>
-            <div style="margin-top:12px;text-align:center;color:#999;font-size:12px;" id="orderCount"></div>
+            <div style="margin-top:10px;text-align:center;color:#999;font-size:11px;" id="orderCount"></div>
         </div>
 
         <!-- ================================================================
@@ -1388,7 +1339,7 @@
             <div class="stats-grid" id="statsGrid">
                 <div class="stat-card">
                     <div class="stat-icon">💰</div>
-                    <div class="stat-value" id="statTotalSales">$0.00</div>
+                    <div class="stat-value" id="statTotalSales">KES 0.00</div>
                     <div class="stat-label">Total Sales</div>
                 </div>
                 <div class="stat-card">
@@ -1398,7 +1349,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">📊</div>
-                    <div class="stat-value" id="statAvgOrder">$0.00</div>
+                    <div class="stat-value" id="statAvgOrder">KES 0.00</div>
                     <div class="stat-label">Average Order</div>
                 </div>
                 <div class="stat-card">
@@ -1408,7 +1359,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">📅</div>
-                    <div class="stat-value" id="statTodaySales">$0.00</div>
+                    <div class="stat-value" id="statTodaySales">KES 0.00</div>
                     <div class="stat-label">Today's Sales</div>
                 </div>
                 <div class="stat-card">
@@ -1436,7 +1387,7 @@
                         <tr>
                             <th>Product</th>
                             <th>Units Sold</th>
-                            <th>Revenue</th>
+                            <th>Revenue (KES)</th>
                             <th>% of Total</th>
                         </tr>
                     </thead>
@@ -1449,42 +1400,47 @@
         TAB: SETTINGS
         ================================================================ -->
         <div class="tab-content" id="tab-settings">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
                 <!-- Users Management -->
-                <div style="background:white;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom:16px;">👥 Users</h3>
-                    <div id="usersList" style="margin-bottom:12px;"></div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <input type="text" id="newUsername" placeholder="Username" style="flex:1;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;min-width:100px;" />
-                        <input type="password" id="newPassword" placeholder="Password" style="flex:1;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;min-width:100px;" />
-                        <select id="newUserRole" style="padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;">
-                            <option value="cashier">Cashier</option>
-                            <option value="manager">Manager</option>
-                            <option value="admin">Admin</option>
+                <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom:12px;font-size:16px;">👥 User Management</h3>
+                    <p style="font-size:12px;color:#666;margin-bottom:10px;">Set or change your password below</p>
+                    <div style="margin-bottom:10px;">
+                        <label style="font-weight:600;font-size:12px;">Select User</label>
+                        <select id="changeUserSelect" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:4px;">
+                            <option value="admin">👑 Admin</option>
+                            <option value="manager">📊 Manager</option>
+                            <option value="cashier">🛒 Cashier</option>
                         </select>
-                        <button id="addUserBtn" style="padding:8px 16px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Add</button>
                     </div>
+                    <div>
+                        <label style="font-weight:600;font-size:12px;">New Password</label>
+                        <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:4px;" />
+                        <button id="setPasswordBtn" style="margin-top:8px;padding:8px 16px;background:#38a169;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">🔑 Set Password</button>
+                    </div>
+                    <div id="usersList" style="margin-top:12px;border-top:1px solid #e8ecf1;padding-top:10px;"></div>
                 </div>
 
                 <!-- Store Settings -->
-                <div style="background:white;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom:16px;">⚙️ Store Settings</h3>
-                    <label style="display:block;font-weight:600;font-size:13px;margin-top:8px;">Store Name</label>
-                    <input type="text" id="storeName" value="My Store" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:4px;" />
-                    <label style="display:block;font-weight:600;font-size:13px;margin-top:8px;">Tax Rate (%)</label>
-                    <input type="number" id="taxRate" value="10" step="0.1" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:4px;" />
-                    <label style="display:block;font-weight:600;font-size:13px;margin-top:8px;">Currency Symbol</label>
-                    <input type="text" id="currencySymbol" value="$" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:4px;" />
-                    <button id="saveSettingsBtn" style="margin-top:16px;padding:10px 24px;background:#667eea;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;width:100%;">💾 Save Settings</button>
+                <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom:12px;font-size:16px;">⚙️ Store Settings</h3>
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Store Name</label>
+                    <input type="text" id="storeName" value="My Store" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Tax Rate (%)</label>
+                    <input type="number" id="taxRate" value="16" step="0.1" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <label style="display:block;font-weight:600;font-size:12px;margin-top:6px;">Currency</label>
+                    <input type="text" id="currencySymbol" value="KES" style="width:100%;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;margin-top:3px;" />
+                    <button id="saveSettingsBtn" style="margin-top:12px;padding:8px 16px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;">💾 Save Settings</button>
                 </div>
 
                 <!-- Data Management -->
-                <div style="background:white;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom:16px;">💾 Data Management</h3>
-                    <button id="backupDataBtn" style="width:100%;padding:10px;background:#38a169;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;margin-bottom:8px;">📦 Backup Data</button>
-                    <button id="restoreDataBtn" style="width:100%;padding:10px;background:#667eea;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;margin-bottom:8px;">📂 Restore Data</button>
+                <div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom:12px;font-size:16px;">💾 Data Management</h3>
+                    <button id="backupDataBtn" style="width:100%;padding:8px;background:#38a169;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-bottom:6px;">📦 Backup Data</button>
+                    <button id="restoreDataBtn" style="width:100%;padding:8px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-bottom:6px;">📂 Restore Data</button>
                     <input type="file" id="restoreFileInput" accept=".json" style="display:none;" />
-                    <button id="clearAllDataBtn" style="width:100%;padding:10px;background:#e53e3e;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:600;">⚠️ Clear All Data</button>
+                    <button id="googleBackupBtn" style="width:100%;padding:8px;background:#4285F4;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-bottom:6px;">☁️ Google Drive Backup</button>
+                    <button id="clearAllDataBtn" style="width:100%;padding:8px;background:#e53e3e;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">⚠️ Clear All Data</button>
                 </div>
             </div>
         </div>
@@ -1501,10 +1457,10 @@
             <h2 id="productModalTitle">Add Product</h2>
             <input type="hidden" id="editProductId" />
             <label>Product Name *</label>
-            <input type="text" id="prodName" placeholder="e.g., Latte" />
+            <input type="text" id="prodName" placeholder="e.g., Chapati" />
             <label>Product Code *</label>
-            <input type="text" id="prodCode" placeholder="e.g., LAT" />
-            <label>Price ($) *</label>
+            <input type="text" id="prodCode" placeholder="e.g., CHP" />
+            <label>Price (KES) *</label>
             <input type="number" id="prodPrice" placeholder="0.00" step="0.01" min="0" />
             <label>Stock Quantity *</label>
             <input type="number" id="prodStock" placeholder="0" min="0" />
@@ -1528,7 +1484,7 @@
             <h2>🧾 Receipt</h2>
             <div id="receiptBody"></div>
             <button class="btn-print" id="printReceiptBtn">🖨️ Print Receipt</button>
-            <button class="btn-cancel" id="closeReceiptBtn" style="width:100%;margin-top:8px;padding:10px;border:none;border-radius:10px;font-weight:600;cursor:pointer;background:#e8ecf1;">Close</button>
+            <button class="btn-cancel" id="closeReceiptBtn" style="width:100%;margin-top:6px;padding:10px;border:none;border-radius:10px;font-weight:600;cursor:pointer;background:#e8ecf1;">Close</button>
         </div>
     </div>
 
@@ -1539,7 +1495,7 @@
             <label>Discount Type</label>
             <select id="discountType">
                 <option value="percentage">Percentage (%)</option>
-                <option value="fixed">Fixed Amount ($)</option>
+                <option value="fixed">Fixed Amount (KES)</option>
             </select>
             <label>Discount Value</label>
             <input type="number" id="discountValue" placeholder="0" step="0.01" min="0" />
@@ -1554,7 +1510,7 @@
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-box">
             <h2 id="confirmTitle">Confirm</h2>
-            <p id="confirmMessage" style="color:#666;margin:12px 0;"></p>
+            <p id="confirmMessage" style="color:#666;margin:10px 0;"></p>
             <div class="modal-actions">
                 <button class="btn-cancel" id="confirmNo">No</button>
                 <button class="btn-save" id="confirmYes">Yes</button>
@@ -1597,18 +1553,18 @@
 
         function getProducts() {
             return DB.get('products', [
-                { id: 1, name: 'Latte', code: 'LAT', price: 4.50, stock: 50, category: 'drink' },
-                { id: 2, name: 'Cappuccino', code: 'CAP', price: 5.00, stock: 40, category: 'drink' },
-                { id: 3, name: 'Espresso', code: 'ESP', price: 3.50, stock: 60, category: 'drink' },
-                { id: 4, name: 'Croissant', code: 'CRO', price: 4.25, stock: 30, category: 'food' },
-                { id: 5, name: 'Muffin', code: 'MUF', price: 3.75, stock: 25, category: 'food' },
-                { id: 6, name: 'Sandwich', code: 'SAN', price: 8.90, stock: 20, category: 'food' },
-                { id: 7, name: 'Smoothie', code: 'SMO', price: 7.25, stock: 15, category: 'drink' },
-                { id: 8, name: 'Cookie', code: 'COO', price: 2.50, stock: 45, category: 'snack' },
-                { id: 9, name: 'Cake Slice', code: 'CAK', price: 6.00, stock: 18, category: 'food' },
-                { id: 10, name: 'Water', code: 'WAT', price: 1.50, stock: 100, category: 'drink' },
-                { id: 11, name: 'Chips', code: 'CHI', price: 2.75, stock: 35, category: 'snack' },
-                { id: 12, name: 'Brownie', code: 'BRO', price: 3.25, stock: 22, category: 'snack' },
+                { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
+                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
+                { id: 3, name: 'Samosas', code: 'SAM', price: 80, price: 150, stock: 60, category: 'food' },
+                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
+                { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
+                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
+                { id: 7, name: 'Pilau', code: 'PIL', price: 250, stock: 15, category: 'food' },
+                { id: 8, name: 'Soda', code: 'SOD', price: 70, stock: 45, category: 'drink' },
+                { id: 9, name: 'Juice', code: 'JUI', price: 100, stock: 18, category: 'drink' },
+                { id: 10, name: 'Water', code: 'WAT', price: 50, stock: 100, category: 'drink' },
+                { id: 11, name: 'Chips', code: 'CHI', price: 150, stock: 35, category: 'snack' },
+                { id: 12, name: 'Bread', code: 'BRE', price: 80, stock: 22, category: 'food' },
             ]);
         }
 
@@ -1618,17 +1574,17 @@
 
         function getUsers() {
             return DB.get('users', [
-                { id: 1, username: 'admin', password: 'admin123', role: 'admin' },
-                { id: 2, username: 'cashier', password: 'cash123', role: 'cashier' },
-                { id: 3, username: 'manager', password: 'manager123', role: 'manager' },
+                { id: 1, username: 'admin', password: '', role: 'admin' },
+                { id: 2, username: 'cashier', password: '', role: 'cashier' },
+                { id: 3, username: 'manager', password: '', role: 'manager' },
             ]);
         }
 
         function getSettings() {
             return DB.get('settings', {
-                storeName: 'My Store',
-                taxRate: 10,
-                currencySymbol: '$'
+                storeName: 'My Kenyan Store',
+                taxRate: 16,
+                currencySymbol: 'KES'
             });
         }
 
@@ -1650,17 +1606,27 @@
 
         let currentUser = null;
 
-        function login(username, password) {
+        function login(role, password) {
             const users = getUsers();
-            const user = users.find(u => u.username === username && u.password === password);
-            if (user) {
+            const user = users.find(u => u.username === role);
+
+            if (!user) {
+                document.getElementById('loginError').style.display = 'block';
+                return false;
+            }
+
+            // If password is not set, allow setting it
+            if (!user.password || user.password === '') {
+                // Set the password
+                user.password = password;
+                saveUsers(users);
                 currentUser = user;
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('app').classList.add('active');
-                document.getElementById('currentUser').textContent = user.username;
+                document.getElementById('currentUser').textContent = user.username.charAt(0).toUpperCase() + user.username
+                    .slice(1);
                 document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
                 document.getElementById('loginError').style.display = 'none';
-                // Reset state
                 cart = [];
                 discount = 0;
                 discountType = 'percentage';
@@ -1673,10 +1639,36 @@
                 renderUsers();
                 loadSettings();
                 updateClock();
+                showAlert('🔑 Password set successfully! You are now logged in.', 'success');
                 return true;
             }
-            document.getElementById('loginError').style.display = 'block';
-            return false;
+
+            // Check password
+            if (user.password !== password) {
+                document.getElementById('loginError').style.display = 'block';
+                return false;
+            }
+
+            currentUser = user;
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('app').classList.add('active');
+            document.getElementById('currentUser').textContent = user.username.charAt(0).toUpperCase() + user.username.slice(
+            1);
+            document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+            document.getElementById('loginError').style.display = 'none';
+            cart = [];
+            discount = 0;
+            discountType = 'percentage';
+            selectedPayment = 'cash';
+            updateCartUI();
+            renderPOSProducts();
+            renderProductTable();
+            renderOrders();
+            renderReports();
+            renderUsers();
+            loadSettings();
+            updateClock();
+            return true;
         }
 
         function logout() {
@@ -1688,13 +1680,29 @@
             document.getElementById('loginPass').value = '';
         }
 
+        function setPassword(role, newPassword) {
+            const users = getUsers();
+            const user = users.find(u => u.username === role);
+            if (!user) {
+                showAlert('❌ User not found!', 'danger');
+                return false;
+            }
+            user.password = newPassword;
+            saveUsers(users);
+            renderUsers();
+            showAlert('✅ Password for ' + role + ' updated successfully!', 'success');
+            return true;
+        }
+
         // ================================================================
         // CLOCK
         // ================================================================
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('currentTime').textContent = now.toLocaleString();
+            document.getElementById('currentTime').textContent = now.toLocaleString('en-KE', {
+                timeZone: 'Africa/Nairobi'
+            });
         }
         setInterval(updateClock, 1000);
 
@@ -1724,6 +1732,7 @@
             const search = $('posSearch').value.toLowerCase();
             const category = $('posCategory').value;
             const grid = $('posProductGrid');
+            const settings = getSettings();
 
             const filtered = products.filter(p => {
                 const matchName = p.name.toLowerCase().includes(search) ||
@@ -1741,7 +1750,7 @@
                 <div class="product-card" data-id="${p.id}">
                     <button class="p-edit" onclick="editProduct(${p.id})">✏️</button>
                     <div class="p-name">${p.name}</div>
-                    <div class="p-price">${getSettings().currencySymbol}${p.price.toFixed(2)}</div>
+                    <div class="p-price">${settings.currencySymbol} ${p.price.toFixed(2)}</div>
                     <div class="p-code">${p.code}</div>
                     <div class="p-stock ${p.stock < 10 ? 'low' : ''}">📦 ${p.stock} left</div>
                 </div>
@@ -1780,7 +1789,6 @@
                 cart.push({ ...product, qty: 1 });
             }
             updateCartUI();
-            showAlert(`✅ Added ${product.name} to cart`, 'success');
         }
 
         function removeFromCart(productId) {
@@ -1811,10 +1819,10 @@
 
             if (cart.length === 0) {
                 container.innerHTML = '<div class="empty-state">🛍️ No items in cart</div>';
-                $('cartSubtotal').textContent = '$0.00';
-                $('cartTax').textContent = '$0.00';
-                $('cartDiscount').textContent = '-$0.00';
-                $('cartTotal').textContent = '$0.00';
+                $('cartSubtotal').textContent = 'KES 0.00';
+                $('cartTax').textContent = 'KES 0.00';
+                $('cartDiscount').textContent = '-KES 0.00';
+                $('cartTotal').textContent = 'KES 0.00';
                 $('discountRow').style.display = 'none';
                 return;
             }
@@ -1826,7 +1834,7 @@
                         <button onclick="removeFromCart(${item.id})">−</button>
                         <span class="ci-qty">${item.qty}</span>
                         <button onclick="addToCart(${item.id})">+</button>
-                        <span class="ci-total">$${(item.price * item.qty).toFixed(2)}</span>
+                        <span class="ci-total">KES ${(item.price * item.qty).toFixed(2)}</span>
                     </div>
                 </div>
             `).join('');
@@ -1845,17 +1853,17 @@
             }
             const total = subtotal + tax - discountAmount;
 
-            $('cartSubtotal').textContent = `${settings.currencySymbol}${subtotal.toFixed(2)}`;
-            $('cartTax').textContent = `${settings.currencySymbol}${tax.toFixed(2)}`;
+            $('cartSubtotal').textContent = `${settings.currencySymbol} ${subtotal.toFixed(2)}`;
+            $('cartTax').textContent = `${settings.currencySymbol} ${tax.toFixed(2)}`;
 
             if (discount > 0) {
                 $('discountRow').style.display = 'flex';
-                $('cartDiscount').textContent = `-${settings.currencySymbol}${discountAmount.toFixed(2)}`;
+                $('cartDiscount').textContent = `-${settings.currencySymbol} ${discountAmount.toFixed(2)}`;
             } else {
                 $('discountRow').style.display = 'none';
             }
 
-            $('cartTotal').textContent = `${settings.currencySymbol}${total.toFixed(2)}`;
+            $('cartTotal').textContent = `${settings.currencySymbol} ${total.toFixed(2)}`;
         }
 
         // ================================================================
@@ -1882,7 +1890,6 @@
             }
             const total = subtotal + tax - discountAmount;
 
-            // Create order
             const orders = getOrders();
             const order = {
                 id: getNextId(orders),
@@ -1900,7 +1907,6 @@
             orders.push(order);
             saveOrders(orders);
 
-            // Update stock
             const products = getProducts();
             cart.forEach(cartItem => {
                 const prod = products.find(p => p.id === cartItem.id);
@@ -1910,10 +1916,8 @@
             });
             saveProducts(products);
 
-            // Show receipt
             showReceipt(order);
 
-            // Reset cart
             cart = [];
             discount = 0;
             updateCartUI();
@@ -1932,38 +1936,38 @@
         function showReceipt(order) {
             const settings = getSettings();
             const body = $('receiptBody');
-            const date = new Date(order.date).toLocaleString();
+            const date = new Date(order.date).toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' });
 
             let html = `
-                <div style="text-align:center;margin-bottom:12px;">
-                    <div style="font-weight:700;font-size:20px;">${settings.storeName}</div>
-                    <div style="font-size:12px;color:#666;">${date}</div>
-                    <div style="font-size:12px;color:#666;">Order #${order.id}</div>
-                    <div style="font-size:12px;color:#666;">Cashier: ${order.user}</div>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <div style="font-weight:700;font-size:18px;">${settings.storeName}</div>
+                    <div style="font-size:11px;color:#666;">${date}</div>
+                    <div style="font-size:11px;color:#666;">Order #${order.id}</div>
+                    <div style="font-size:11px;color:#666;">Cashier: ${order.user}</div>
                 </div>
-                <div style="border-top:2px dashed #ddd;padding-top:10px;"></div>
+                <div style="border-top:2px dashed #ddd;padding-top:8px;"></div>
             `;
 
             order.items.forEach(item => {
                 html += `
                     <div class="receipt-item">
                         <span>${item.name} × ${item.qty}</span>
-                        <span>${settings.currencySymbol}${(item.price * item.qty).toFixed(2)}</span>
+                        <span>${settings.currencySymbol} ${(item.price * item.qty).toFixed(2)}</span>
                     </div>
                 `;
             });
 
             html += `
-                <div style="border-top:2px dashed #ddd;margin-top:10px;padding-top:10px;"></div>
-                <div class="receipt-item"><span>Subtotal</span><span>${settings.currencySymbol}${order.subtotal.toFixed(2)}</span></div>
-                <div class="receipt-item"><span>Tax (${settings.taxRate}%)</span><span>${settings.currencySymbol}${order.tax.toFixed(2)}</span></div>
-                ${order.discount > 0 ? `<div class="receipt-item"><span>Discount</span><span>-${settings.currencySymbol}${order.discount.toFixed(2)}</span></div>` : ''}
-                <div class="receipt-total">Total: ${settings.currencySymbol}${order.total.toFixed(2)}</div>
-                <div style="text-align:center;font-size:12px;color:#666;margin-top:8px;">
+                <div style="border-top:2px dashed #ddd;margin-top:8px;padding-top:8px;"></div>
+                <div class="receipt-item"><span>Subtotal</span><span>${settings.currencySymbol} ${order.subtotal.toFixed(2)}</span></div>
+                <div class="receipt-item"><span>Tax (${settings.taxRate}%)</span><span>${settings.currencySymbol} ${order.tax.toFixed(2)}</span></div>
+                ${order.discount > 0 ? `<div class="receipt-item"><span>Discount</span><span>-${settings.currencySymbol} ${order.discount.toFixed(2)}</span></div>` : ''}
+                <div class="receipt-total">Total: ${settings.currencySymbol} ${order.total.toFixed(2)}</div>
+                <div style="text-align:center;font-size:11px;color:#666;margin-top:6px;">
                     Payment: ${order.payment.toUpperCase()}
                 </div>
-                <div style="text-align:center;font-size:12px;color:#999;margin-top:8px;">
-                    Thank you for your purchase!
+                <div style="text-align:center;font-size:11px;color:#999;margin-top:6px;">
+                    Asante sana! Thank you for your purchase!
                 </div>
             `;
 
@@ -2001,7 +2005,7 @@
                     <td>${p.id}</td>
                     <td><strong>${p.name}</strong></td>
                     <td>${p.code}</td>
-                    <td>${settings.currencySymbol}${p.price.toFixed(2)}</td>
+                    <td>${settings.currencySymbol} ${p.price.toFixed(2)}</td>
                     <td>${p.stock}</td>
                     <td>${p.category}</td>
                     <td>
@@ -2119,7 +2123,7 @@
                 <div class="order-card">
                     <div class="order-header">
                         <span class="order-id">#${o.id}</span>
-                        <span>${new Date(o.date).toLocaleString()}</span>
+                        <span>${new Date(o.date).toLocaleString('en-KE', {timeZone: 'Africa/Nairobi'})}</span>
                         <span>👤 ${o.user}</span>
                         <span class="order-status">${o.status}</span>
                     </div>
@@ -2128,7 +2132,7 @@
                     </div>
                     <div class="order-footer">
                         <span>
-                            <span class="order-total">${settings.currencySymbol}${o.total.toFixed(2)}</span>
+                            <span class="order-total">${settings.currencySymbol} ${o.total.toFixed(2)}</span>
                             <span class="order-payment">💳 ${o.payment.toUpperCase()}</span>
                         </span>
                         <button class="btn-view" onclick="viewOrder(${o.id})">👁️ View Receipt</button>
@@ -2155,18 +2159,15 @@
             const settings = getSettings();
             let filtered = filterOrdersByPeriod(orders, period);
 
-            // Stats
             const totalSales = filtered.reduce((sum, o) => sum + o.total, 0);
             const orderCount = filtered.length;
             const avgOrder = orderCount > 0 ? totalSales / orderCount : 0;
 
-            // Today's sales
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const todayOrders = orders.filter(o => new Date(o.date) >= today);
             const todaySales = todayOrders.reduce((sum, o) => sum + o.total, 0);
 
-            // Top product
             const productSales = {};
             filtered.forEach(o => {
                 o.items.forEach(item => {
@@ -2186,18 +2187,16 @@
                 }
             }
 
-            // Unique customers
             const customers = new Set(filtered.map(o => o.user));
             const customerCount = customers.size;
 
-            $('statTotalSales').textContent = `${settings.currencySymbol}${totalSales.toFixed(2)}`;
+            $('statTotalSales').textContent = `${settings.currencySymbol} ${totalSales.toFixed(2)}`;
             $('statOrderCount').textContent = orderCount;
-            $('statAvgOrder').textContent = `${settings.currencySymbol}${avgOrder.toFixed(2)}`;
+            $('statAvgOrder').textContent = `${settings.currencySymbol} ${avgOrder.toFixed(2)}`;
             $('statTopProduct').textContent = topProduct || '-';
-            $('statTodaySales').textContent = `${settings.currencySymbol}${todaySales.toFixed(2)}`;
+            $('statTodaySales').textContent = `${settings.currencySymbol} ${todaySales.toFixed(2)}`;
             $('statCustomers').textContent = customerCount;
 
-            // Report table
             const sorted = Object.entries(productSales)
                 .sort((a, b) => b[1].revenue - a[1].revenue)
                 .slice(0, 20);
@@ -2214,7 +2213,7 @@
                     <tr>
                         <td><strong>${name}</strong></td>
                         <td>${data.qty}</td>
-                        <td>${settings.currencySymbol}${data.revenue.toFixed(2)}</td>
+                        <td>${settings.currencySymbol} ${data.revenue.toFixed(2)}</td>
                         <td>${pct.toFixed(1)}%</td>
                     </tr>
                 `;
@@ -2256,51 +2255,11 @@
             }
 
             container.innerHTML = users.map(u => `
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f2f5;">
-                    <span><strong>${u.username}</strong> <span style="color:#666;font-size:12px;">(${u.role})</span></span>
-                    ${u.username !== 'admin' ? `<button onclick="deleteUser(${u.id})" style="padding:2px 10px;background:#e53e3e;color:white;border:none;border-radius:4px;cursor:pointer;font-size:12px;">🗑️</button>` : ''}
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #f0f2f5;">
+                    <span><strong>${u.username}</strong> <span style="color:#666;font-size:11px;">(${u.role})</span>
+                    ${u.password ? ' 🔒' : ' ⚠️ No password set'}</span>
                 </div>
             `).join('');
-        }
-
-        function deleteUser(id) {
-            showConfirm('Delete User', 'Are you sure you want to delete this user?', () => {
-                let users = getUsers();
-                users = users.filter(u => u.id !== id);
-                saveUsers(users);
-                renderUsers();
-                showAlert('🗑️ User deleted', 'info');
-            });
-        }
-
-        function addUser() {
-            const username = $('newUsername').value.trim();
-            const password = $('newPassword').value.trim();
-            const role = $('newUserRole').value;
-
-            if (!username || !password) {
-                showAlert('⚠️ Please enter username and password', 'danger');
-                return;
-            }
-
-            const users = getUsers();
-            if (users.find(u => u.username === username)) {
-                showAlert('⚠️ Username already exists', 'danger');
-                return;
-            }
-
-            users.push({
-                id: getNextId(users),
-                username,
-                password,
-                role
-            });
-
-            saveUsers(users);
-            renderUsers();
-            $('newUsername').value = '';
-            $('newPassword').value = '';
-            showAlert('✅ User added successfully!', 'success');
         }
 
         // ================================================================
@@ -2309,16 +2268,16 @@
 
         function loadSettings() {
             const settings = getSettings();
-            $('storeName').value = settings.storeName || 'My Store';
-            $('taxRate').value = settings.taxRate || 10;
-            $('currencySymbol').value = settings.currencySymbol || '$';
+            $('storeName').value = settings.storeName || 'My Kenyan Store';
+            $('taxRate').value = settings.taxRate || 16;
+            $('currencySymbol').value = settings.currencySymbol || 'KES';
         }
 
         function saveSettings() {
             const settings = {
-                storeName: $('storeName').value.trim() || 'My Store',
-                taxRate: parseFloat($('taxRate').value) || 10,
-                currencySymbol: $('currencySymbol').value.trim() || '$'
+                storeName: $('storeName').value.trim() || 'My Kenyan Store',
+                taxRate: parseFloat($('taxRate').value) || 16,
+                currencySymbol: $('currencySymbol').value.trim() || 'KES'
             };
             saveSettings(settings);
             showAlert('✅ Settings saved successfully!', 'success');
@@ -2327,6 +2286,39 @@
             renderProductTable();
             renderOrders();
             renderReports();
+        }
+
+        // ================================================================
+        // GOOGLE DRIVE BACKUP
+        // ================================================================
+
+        function googleDriveBackup() {
+            const data = {
+                products: getProducts(),
+                orders: getOrders(),
+                users: getUsers(),
+                settings: getSettings(),
+                timestamp: new Date().toISOString()
+            };
+
+            const jsonData = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const file = new File([blob], `pos_backup_${new Date().toISOString().slice(0,10)}.json`, { type: 'application/json' });
+
+            // Create a download link (simplified Google Drive approach)
+            const url = URL.createObjectURL(file);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showAlert('📦 Backup file downloaded! Upload it to Google Drive manually or click the Google Drive button.', 'success');
+
+            // Open Google Drive in new tab
+            window.open('https://drive.google.com', '_blank');
         }
 
         // ================================================================
@@ -2379,20 +2371,20 @@
             showConfirm('⚠️ Clear All Data', 'This will permanently delete all data. Are you sure?', () => {
                 showConfirm('⚠️ Final Confirmation', 'This is irreversible! Are you absolutely sure?', () => {
                     DB.clear();
-                    // Re-initialize with defaults
                     saveProducts([
-                        { id: 1, name: 'Latte', code: 'LAT', price: 4.50, stock: 50, category: 'drink' },
-                        { id: 2, name: 'Cappuccino', code: 'CAP', price: 5.00, stock: 40, category: 'drink' },
-                        { id: 3, name: 'Espresso', code: 'ESP', price: 3.50, stock: 60, category: 'drink' },
-                        { id: 4, name: 'Croissant', code: 'CRO', price: 4.25, stock: 30, category: 'food' },
-                        { id: 5, name: 'Muffin', code: 'MUF', price: 3.75, stock: 25, category: 'food' },
-                        { id: 6, name: 'Sandwich', code: 'SAN', price: 8.90, stock: 20, category: 'food' },
+                        { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
+                        { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
+                        { id: 3, name: 'Samosas', code: 'SAM', price: 80, stock: 60, category: 'food' },
+                        { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
+                        { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
+                        { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
                     ]);
                     saveUsers([
-                        { id: 1, username: 'admin', password: 'admin123', role: 'admin' },
-                        { id: 2, username: 'cashier', password: 'cash123', role: 'cashier' },
+                        { id: 1, username: 'admin', password: '', role: 'admin' },
+                        { id: 2, username: 'cashier', password: '', role: 'cashier' },
+                        { id: 3, username: 'manager', password: '', role: 'manager' },
                     ]);
-                    saveSettings({ storeName: 'My Store', taxRate: 10, currencySymbol: '$' });
+                    saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES' });
                     saveOrders([]);
                     loadSettings();
                     renderPOSProducts();
@@ -2496,7 +2488,6 @@
                         const category = catIdx >= 0 ? (cols[catIdx] || 'other').toLowerCase() : 'other';
 
                         if (name && price > 0) {
-                            // Check if product exists
                             const existing = products.find(p => p.code === code || p.name === name);
                             if (existing) {
                                 existing.name = name;
@@ -2548,10 +2539,10 @@
                 right: 20px;
                 background: ${colors[type] || colors.info};
                 color: white;
-                padding: 14px 24px;
+                padding: 12px 20px;
                 border-radius: 12px;
                 font-weight: 600;
-                font-size: 14px;
+                font-size: 13px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.2);
                 z-index: 99999;
                 max-width: 400px;
@@ -2586,12 +2577,23 @@
 
         // Login
         $('loginBtn').addEventListener('click', () => {
-            login($('loginUser').value, $('loginPass').value);
+            const role = $('loginRole').value;
+            const password = $('loginPass').value;
+            if (!password || password.trim() === '') {
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('loginError').textContent = '❌ Please enter your password.';
+                return;
+            }
+            login(role, password);
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !document.getElementById('app').classList.contains('active')) {
-                login($('loginUser').value, $('loginPass').value);
+                const role = $('loginRole').value;
+                const password = $('loginPass').value;
+                if (password && password.trim() !== '') {
+                    login(role, password);
+                }
             }
         });
 
@@ -2660,7 +2662,7 @@
             $('discountModal').classList.remove('show');
             updateCartUI();
             if (discount > 0) {
-                showAlert(`🏷️ Discount of ${discountType === 'percentage' ? discount + '%' : '$' + discount} applied!`,
+                showAlert(`🏷️ Discount of ${discountType === 'percentage' ? discount + '%' : 'KES ' + discount} applied!`,
                     'success');
             }
         });
@@ -2720,9 +2722,56 @@
         $('exportReportBtn').addEventListener('click', exportReport);
         $('reportPeriod').addEventListener('change', renderReports);
 
-        // Settings
-        $('addUserBtn').addEventListener('click', addUser);
+        // Settings - Users
+        $('setPasswordBtn').addEventListener('click', () => {
+            const role = $('changeUserSelect').value;
+            const newPassword = $('newPasswordInput').value.trim();
+            if (!newPassword) {
+                showAlert('⚠️ Please enter a password', 'danger');
+                return;
+            }
+            if (newPassword.length < 3) {
+                showAlert('⚠️ Password must be at least 3 characters', 'danger');
+                return;
+            }
+            setPassword(role, newPassword);
+            $('newPasswordInput').value = '';
+        });
+
+        $('addUserBtn').addEventListener('click', () => {
+            const username = $('newUsername').value.trim();
+            const password = $('newPassword').value.trim();
+            const role = $('newUserRole').value;
+
+            if (!username || !password) {
+                showAlert('⚠️ Please enter username and password', 'danger');
+                return;
+            }
+
+            const users = getUsers();
+            if (users.find(u => u.username === username)) {
+                showAlert('⚠️ Username already exists', 'danger');
+                return;
+            }
+
+            users.push({
+                id: getNextId(users),
+                username,
+                password,
+                role
+            });
+
+            saveUsers(users);
+            renderUsers();
+            $('newUsername').value = '';
+            $('newPassword').value = '';
+            showAlert('✅ User added successfully!', 'success');
+        });
+
+        // Settings - Store
         $('saveSettingsBtn').addEventListener('click', saveSettings);
+
+        // Settings - Data Management
         $('backupDataBtn').addEventListener('click', backupData);
         $('restoreDataBtn').addEventListener('click', () => {
             $('restoreFileInput').click();
@@ -2733,6 +2782,7 @@
                 e.target.value = '';
             }
         });
+        $('googleBackupBtn').addEventListener('click', googleDriveBackup);
         $('clearAllDataBtn').addEventListener('click', clearAllData);
 
         // Confirm modal
@@ -2773,21 +2823,28 @@
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            // Escape closes modals
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
             }
-            // F2 for checkout
             if (e.key === 'F2' && document.getElementById('app').classList.contains('active')) {
                 e.preventDefault();
                 checkout();
             }
-            // F3 for clear cart
             if (e.key === 'F3' && document.getElementById('app').classList.contains('active')) {
                 e.preventDefault();
                 clearCart();
             }
         });
+
+        // ================================================================
+        // SERVICE WORKER (PWA)
+        // ================================================================
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('✅ Service Worker registered!'))
+                .catch(err => console.log('⚠️ Service Worker registration failed:', err));
+        }
 
         // ================================================================
         // KEYBOARD SHORTCUTS HELP
@@ -2805,34 +2862,32 @@
         // Pre-populate with sample data if empty
         if (getProducts().length === 0) {
             saveProducts([
-                { id: 1, name: 'Latte', code: 'LAT', price: 4.50, stock: 50, category: 'drink' },
-                { id: 2, name: 'Cappuccino', code: 'CAP', price: 5.00, stock: 40, category: 'drink' },
-                { id: 3, name: 'Espresso', code: 'ESP', price: 3.50, stock: 60, category: 'drink' },
-                { id: 4, name: 'Croissant', code: 'CRO', price: 4.25, stock: 30, category: 'food' },
-                { id: 5, name: 'Muffin', code: 'MUF', price: 3.75, stock: 25, category: 'food' },
-                { id: 6, name: 'Sandwich', code: 'SAN', price: 8.90, stock: 20, category: 'food' },
+                { id: 1, name: 'Chapati', code: 'CHP', price: 50, stock: 50, category: 'food' },
+                { id: 2, name: 'Mandazi', code: 'MAN', price: 30, stock: 40, category: 'food' },
+                { id: 3, name: 'Samosas', code: 'SAM', price: 80, stock: 60, category: 'food' },
+                { id: 4, name: 'Nyama Choma', code: 'NYC', price: 350, stock: 30, category: 'food' },
+                { id: 5, name: 'Ugali', code: 'UGA', price: 120, stock: 25, category: 'food' },
+                { id: 6, name: 'Sukuma Wiki', code: 'SUK', price: 80, stock: 20, category: 'food' },
             ]);
         }
 
         if (getUsers().length === 0) {
             saveUsers([
-                { id: 1, username: 'admin', password: 'admin123', role: 'admin' },
-                { id: 2, username: 'cashier', password: 'cash123', role: 'cashier' },
-                { id: 3, username: 'manager', password: 'manager123', role: 'manager' },
+                { id: 1, username: 'admin', password: '', role: 'admin' },
+                { id: 2, username: 'cashier', password: '', role: 'cashier' },
+                { id: 3, username: 'manager', password: '', role: 'manager' },
             ]);
         }
 
         if (getSettings().length === 0) {
-            saveSettings({ storeName: 'My Store', taxRate: 10, currencySymbol: '$' });
+            saveSettings({ storeName: 'My Kenyan Store', taxRate: 16, currencySymbol: 'KES' });
         }
 
-        console.log('💾 POS System loaded successfully!');
+        console.log('🇰🇪 POS System loaded successfully!');
         console.log(`📦 Products: ${getProducts().length}`);
         console.log(`📋 Orders: ${getOrders().length}`);
         console.log(`👤 Users: ${getUsers().length}`);
-
-        // Auto-login for demo (remove for production)
-        // login('admin', 'admin123');
+        console.log('💡 No passwords are hardcoded. Users set their own passwords!');
     </script>
 
 </body>
